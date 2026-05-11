@@ -1,0 +1,77 @@
+{
+  "embeddingModel": "sentence-transformers/all-MiniLM-L6-v2",
+  "generatedAt": "2026-05-11T05:28:34.549Z",
+  "lexicalOnly": true,
+  "chunks": [
+    {
+      "id": "jk-0",
+      "text": "# Jonathan Kenneth — Portfolio profile (public)",
+      "embedding": null
+    },
+    {
+      "id": "jk-1",
+      "text": "## Overview\n\nJonathan Kenneth is a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS). His interests center on machine learning, financial AI systems, time-series forecasting, sentiment analysis, and applications of large language models and RAG. He focuses on building end-to-end AI systems for real-world financial and analytical problems, including cryptocurrency forecasting, Indonesian stock-market analysis, blockchain data integration, and AI-driven sentiment pipelines.",
+      "embedding": null
+    },
+    {
+      "id": "jk-2",
+      "text": "## How he builds systems\n\nHe enjoys end-to-end systems that cover: data collection pipelines, feature engineering, machine learning and deep learning models, LLM and RAG systems, evaluation frameworks, and deployment-ready workflows.",
+      "embedding": null
+    },
+    {
+      "id": "jk-3",
+      "text": "## Technical skills — programming\n\nPython, SQL, Java, C++, JavaScript, React, Node.js, Django, Git and GitHub.",
+      "embedding": null
+    },
+    {
+      "id": "jk-4",
+      "text": "## Technical skills — machine learning and AI\n\nMachine learning, deep learning, time-series forecasting, feature engineering, sentiment analysis, LLM engineering, prompt engineering, RAG systems, vector databases, and human-in-the-loop AI systems.",
+      "embedding": null
+    },
+    {
+      "id": "jk-5",
+      "text": "## Models and frameworks\n\nXGBoost, Random Forest, AutoGluon, Chronos, Temporal Fusion Transformer, LSTM, ARIMAX, VAR, KNIME.",
+      "embedding": null
+    },
+    {
+      "id": "jk-6",
+      "text": "## Data and infrastructure\n\nData analysis, data visualization, web scraping, blockchain data processing, MLOps concepts, Docker (learning), MLflow (learning), and cloud AI systems with interest in AWS and GCP.",
+      "embedding": null
+    },
+    {
+      "id": "jk-7",
+      "text": "## Major project — cryptocurrency forecasting\n\n**Title:** Multivariate Forecasting and Predictability Analysis of Cryptocurrency Market Dynamics.\n\n**Focus:** Predicting cryptocurrency returns, volatility, and trading volume for BTC, ETH, and SOL across hourly and daily horizons.\n\n**Data sources:** Binance OHLCV market data; blockchain metrics from Dune; macroeconomic indicators from FRED.\n\n**Techniques:** Statistical forecasting, machine learning, deep learning, transformer-based forecasting.\n\n**Models used:** ARIMAX, VAR, Random Forest, XGBoost, LSTM, TimeGPT, TimesFM, Chronos, Temporal Fusion Transformer.\n\n**Evaluation metrics:** MAE, RMSE, MAPE, MASE, R².\n\n**Themes explored:** Rolling forecasts, regime detection, feature engineering, combining blockchain metrics with OHLCV, multi-timeframe modelling.",
+      "embedding": null
+    },
+    {
+      "id": "jk-8",
+      "text": "## Major project — Indonesian stock sentiment\n\n**Goal:** Build an AI pipeline mapping Indonesian financial news sentiment to individual stocks.\n\n**System features:** News scraping; hybrid search and clustering; similar-news grouping; sentiment scoring; category classification; stakeholder or entity mapping; daily stock sentiment aggregation.\n\n**Research areas:** LLM classification systems, FinBERT-style sentiment scoring, RAG-based knowledge systems, cached inference pipelines, event-to-sector impact analysis.",
+      "embedding": null
+    },
+    {
+      "id": "jk-9",
+      "text": "## Broker flow and Indonesian market analysis\n\nFocus on how broker activity and foreign flows relate to Indonesian stock movements. Areas explored include broker transaction analysis, foreign buy and sell tracking, order-book behaviour, retail versus institutional behaviour, “bandar” flow analysis, Indonesian stock market psychology.",
+      "embedding": null
+    },
+    {
+      "id": "jk-10",
+      "text": "## AI and computer vision\n\nExperience with image detection and object detection, AI model deployment concepts, portfolio-ready GitHub structures. Professional practices include clean repositories, reproducibility, README documentation, and separating notebooks from production-oriented code.",
+      "embedding": null
+    },
+    {
+      "id": "jk-11",
+      "text": "## Research and ethics interests\n\nInterests include AI ethics, Indigenous Data Sovereignty, CARE principles, human–AI collaboration, responsible AI governance, and ethical use of generative AI. Academic habits include APA 7th referencing, synthesis, critical evaluation frameworks, and the Gibbs Reflective Framework.",
+      "embedding": null
+    },
+    {
+      "id": "jk-12",
+      "text": "## Working style\n\n**Strengths:** Analytical thinking, data analysis, structured problem solving, curiosity-driven learning, building practical AI systems, strong technical exploration.\n\n**Growth areas:** Communication, teamwork, adaptability, reducing overthinking and perfectionism, improving creative ideation.",
+      "embedding": null
+    },
+    {
+      "id": "jk-13",
+      "text": "## Career direction\n\n**Primary target roles:** Machine Learning Engineer; Financial AI Engineer; Time-Series Forecasting Specialist.\n\n**Secondary interests:** Quantitative Data Science; AI Research Engineering; LLM Engineering.\n\n**Industry direction:** Finance and AI systems; crypto analytics; trading intelligence; large-scale AI infrastructure.",
+      "embedding": null
+    }
+  ]
+}
