@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A clean, responsive portfolio website template for showcasing projects, skills, and experience."
+    />
+    <title>Your Name | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="logo" href="#home" aria-label="Go to homepage">YN</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" data-nav-menu>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Available for freelance and full-time work</p>
+            <h1>Hi, I am <span>Your Name</span>. I build thoughtful digital products.</h1>
+            <p class="hero-description">
+              Replace this text with a short introduction about who you are, what
+              you do, and the value you bring to teams or clients.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#projects">View projects</a>
+              <a class="button secondary" href="#contact">Contact me</a>
+            </div>
+          </div>
+          <div class="hero-card" aria-label="Portfolio profile card">
+            <div class="profile-image" aria-hidden="true">YN</div>
+            <div>
+              <p class="profile-name">Your Name</p>
+              <p class="profile-role">Frontend Developer</p>
+            </div>
+            <div class="profile-stats">
+              <span><strong>12+</strong> Projects</span>
+              <span><strong>5</strong> Years</span>
+              <span><strong>8</strong> Clients</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container split-section">
+          <div>
+            <p class="section-label">About</p>
+            <h2>Design-minded development for polished web experiences.</h2>
+          </div>
+          <div class="section-copy">
+            <p>
+              Use this space to tell your story. Mention your background, the
+              problems you enjoy solving, and what makes your work distinct.
+            </p>
+            <p>
+              Keep it concise and specific. A strong portfolio explains both what
+              you made and why it mattered.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section muted" id="skills">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Skills</p>
+            <h2>Tools and strengths</h2>
+          </div>
+          <div class="skills-grid">
+            <article class="skill-card">
+              <h3>Frontend</h3>
+              <p>HTML, CSS, JavaScript, React, responsive design, accessibility.</p>
+            </article>
+            <article class="skill-card">
+              <h3>Backend</h3>
+              <p>Node.js, APIs, databases, authentication, performance tuning.</p>
+            </article>
+            <article class="skill-card">
+              <h3>Product</h3>
+              <p>User research, prototyping, design systems, analytics, iteration.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Projects</p>
+            <h2>Featured work</h2>
+          </div>
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-preview gradient-one"></div>
+              <div class="project-content">
+                <p class="project-meta">Web App / 2026</p>
+                <h3>Project One</h3>
+                <p>
+                  Describe the project goal, your role, and the measurable outcome
+                  or impact.
+                </p>
+                <a href="#" aria-label="View Project One">View case study</a>
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="project-preview gradient-two"></div>
+              <div class="project-content">
+                <p class="project-meta">Brand Site / 2026</p>
+                <h3>Project Two</h3>
+                <p>
+                  Highlight the technology stack, design decisions, and what you
+                  learned.
+                </p>
+                <a href="#" aria-label="View Project Two">View case study</a>
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="project-preview gradient-three"></div>
+              <div class="project-content">
+                <p class="project-meta">Dashboard / 2026</p>
+                <h3>Project Three</h3>
+                <p>
+                  Explain the user problem and how your solution improved the
+                  experience.
+                </p>
+                <a href="#" aria-label="View Project Three">View case study</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section muted" id="experience">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Experience</p>
+            <h2>Recent roles</h2>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item">
+              <div>
+                <p class="timeline-date">2024 - Present</p>
+                <h3>Senior Developer, Company Name</h3>
+              </div>
+              <p>
+                Summarize your responsibilities, major wins, and the technologies
+                you used.
+              </p>
+            </article>
+            <article class="timeline-item">
+              <div>
+                <p class="timeline-date">2021 - 2024</p>
+                <h3>Frontend Developer, Company Name</h3>
+              </div>
+              <p>
+                Add another role, freelance engagement, education entry, or
+                certification.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container contact-card">
+          <div>
+            <p class="section-label">Contact</p>
+            <h2>Let us build something memorable.</h2>
+            <p>
+              Tell visitors how to reach you. Replace the links below with your
+              preferred email, LinkedIn, GitHub, or resume.
+            </p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:hello@example.com">hello@example.com</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; <span data-year></span> Your Name. All rights reserved.</p>
+        <a href="#home">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
