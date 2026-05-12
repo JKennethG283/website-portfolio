@@ -1,4 +1,8 @@
+import Image from "next/image";
+
 import { SiteHeader } from "@/ui/site/SiteHeader";
+import { ProjectCarousel } from "@/ui/site/ProjectCarousel";
+import { RevealSection } from "@/ui/site/RevealSection";
 
 const year = new Date().getFullYear();
 
@@ -37,13 +41,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="about">
-          <div className="container split-section">
-            <div>
+        <RevealSection className="section" id="about">
+          <div className="container split-section about-split">
+            <div className="about-photo-column">
+              <Image
+                src="/images/profile.jpg"
+                alt="Jonathan Kenneth Gunawan"
+                width={360}
+                height={480}
+                className="about-photo"
+                sizes="(max-width: 860px) min(280px, 88vw), 320px"
+              />
+            </div>
+            <div className="about-copy">
               <p className="section-label">About</p>
               <h2>Rigorous models, clear evaluation, deployment-minded workflows.</h2>
-            </div>
-            <div className="section-copy">
+              <div className="section-copy">
               <p>
                 I am a Bachelor of Artificial Intelligence student at the
                 University of Technology Sydney, focused on financial AI, time-series
@@ -55,11 +68,12 @@ export default function Home() {
                 production—without losing sight of ethics and responsible use of
                 generative AI.
               </p>
+              </div>
             </div>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="section muted" id="skills">
+        <RevealSection className="section muted" id="skills">
           <div className="container">
             <div className="section-heading">
               <p className="section-label">Skills</p>
@@ -89,6 +103,17 @@ export default function Home() {
                   and MLflow (learning).
                 </p>
               </article>
+            </div>
+          </div>
+        </RevealSection>
+
+        <RevealSection className="section" id="playground">
+          <div className="container">
+            <div className="section-heading">
+              <p className="section-label">Playground</p>
+              <h2>Interactive AI demos</h2>
+            </div>
+            <div className="skills-grid">
               <article className="skill-card skill-card-link">
                 <h3>Object detection demo</h3>
                 <p>
@@ -111,15 +136,15 @@ export default function Home() {
               </article>
             </div>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="section" id="projects">
+        <RevealSection className="section" id="projects">
           <div className="container">
             <div className="section-heading">
               <p className="section-label">Projects</p>
               <h2>Featured work</h2>
             </div>
-            <div className="projects-grid">
+            <ProjectCarousel>
               <article className="project-card">
                 <div className="project-preview gradient-one" />
                 <div className="project-content">
@@ -130,46 +155,121 @@ export default function Home() {
                     Dune metrics, and FRED—statistical, ML, and transformer baselines
                     with MAE, RMSE, MAPE, MASE, and R².
                   </p>
-                  <a href="#contact" aria-label="Discuss crypto forecasting project">
-                    Get in touch
+                  <a
+                    href="https://github.com/JKennethG283/cryptocurrency-time-series-modelling"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View cryptocurrency forecasting repository on GitHub"
+                  >
+                    View on GitHub
                   </a>
                 </div>
               </article>
               <article className="project-card">
                 <div className="project-preview gradient-two" />
                 <div className="project-content">
-                  <p className="project-meta">NLP · Indonesia markets</p>
+                  <p className="project-meta">NLP · Indonesia markets · WIP</p>
                   <h3>Stock sentiment pipeline</h3>
                   <p>
                     Indonesian financial news mapped to stocks: scraping, hybrid
                     search and clustering, sentiment scoring, LLM classification, and
-                    RAG-style knowledge use.
+                    RAG-style knowledge use. Work in progress.
                   </p>
-                  <a href="#contact" aria-label="Discuss sentiment pipeline project">
-                    Get in touch
+                  <a
+                    href="https://github.com/JKennethG283/news-sentiment-analysis-indonesian-market"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View stock sentiment pipeline repository on GitHub"
+                  >
+                    View on GitHub
                   </a>
                 </div>
               </article>
               <article className="project-card">
                 <div className="project-preview gradient-three" />
                 <div className="project-content">
-                  <p className="project-meta">Markets · Flow analysis</p>
+                  <p className="project-meta">Markets · Flow analysis · WIP</p>
                   <h3>Broker &amp; flow analysis</h3>
                   <p>
                     Broker activity, foreign flows, order books, and retail vs
                     institutional behaviour in Indonesian equities—with attention
-                    to market microstructure and psychology.
+                    to market microstructure and psychology. Work in progress.
                   </p>
-                  <a href="#contact" aria-label="Discuss broker flow analysis project">
-                    Get in touch
+                  <a
+                    href="https://github.com/JKennethG283/indonesian-broker-flow"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View broker and flow analysis work on GitHub"
+                  >
+                    View on GitHub
                   </a>
                 </div>
               </article>
-            </div>
+              <article className="project-card">
+                <div className="project-preview gradient-one" />
+                <div className="project-content">
+                  <p className="project-meta">Tabular ML · Forecasting</p>
+                  <h3>Weather prediction</h3>
+                  <p>
+                    Leakage-safe RainTomorrow classification with Pipeline and
+                    ColumnTransformer, benchmarking multiple models and reaching
+                    0.86 test accuracy with a Random Forest baseline.
+                  </p>
+                  <a
+                    href="https://github.com/JKennethG283/weather-prediction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View weather prediction repository on GitHub"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+              </article>
+              <article className="project-card">
+                <div className="project-preview gradient-two" />
+                <div className="project-content">
+                  <p className="project-meta">Computer Vision · MRI</p>
+                  <h3>Brain tumor classification</h3>
+                  <p>
+                    Multi-class MRI tumor classification using handcrafted image
+                    features (LBP + HOG) with SVM, achieving 81.36% baseline test
+                    accuracy in a reproducible training and inference workflow.
+                  </p>
+                  <a
+                    href="https://github.com/JKennethG283/brain-tumor-image-classification"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View brain tumor classification repository on GitHub"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+              </article>
+              <article className="project-card">
+                <div className="project-preview gradient-three" />
+                <div className="project-content">
+                  <p className="project-meta">Object Detection · Dermatology</p>
+                  <h3>Skin disease object detection</h3>
+                  <p>
+                    Ultralytics YOLO pipeline for skin lesion detection with
+                    config-driven training, evaluation, and inference; baseline run
+                    reached mAP@50 of 0.696 and mAP@50-95 of 0.418.
+                  </p>
+                  <a
+                    href="https://github.com/JKennethG283/skin-disease-object-detection"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View skin disease object detection repository on GitHub"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+              </article>
+            </ProjectCarousel>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="section muted" id="experience">
+        <RevealSection className="section muted" id="experience">
           <div className="container">
             <div className="section-heading">
               <p className="section-label">Experience</p>
@@ -200,9 +300,9 @@ export default function Home() {
               </article>
             </div>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="section contact" id="contact">
+        <RevealSection className="section contact" id="contact">
           <div className="container contact-card">
             <div>
               <p className="section-label">Contact</p>
@@ -232,7 +332,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </section>
+        </RevealSection>
       </main>
 
       <footer className="site-footer">

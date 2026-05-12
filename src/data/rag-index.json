@@ -1,6 +1,6 @@
 {
   "embeddingModel": "sentence-transformers/all-MiniLM-L6-v2",
-  "generatedAt": "2026-05-11T05:28:34.549Z",
+  "generatedAt": "2026-05-12T11:01:20.311Z",
   "lexicalOnly": true,
   "chunks": [
     {
@@ -15,61 +15,136 @@
     },
     {
       "id": "jk-2",
-      "text": "## How he builds systems\n\nHe enjoys end-to-end systems that cover: data collection pipelines, feature engineering, machine learning and deep learning models, LLM and RAG systems, evaluation frameworks, and deployment-ready workflows.",
+      "text": "## Elevator pitch\n\nJonathan Kenneth Gunawan is a production-minded Bachelor of Artificial Intelligence student at UTS in Sydney, nearing graduation. He builds reproducible forecasting, NLP, broker-flow, and computer vision systems—with clear evaluation, containers/pipelines in mind, and public GitHub portfolios. Indonesian, age 22, fluent in English and Indonesian and moderate in Chinese; actively seeking internships, graduate programs, or full-time roles worldwide.",
       "embedding": null
     },
     {
       "id": "jk-3",
-      "text": "## Technical skills — programming\n\nPython, SQL, Java, C++, JavaScript, React, Node.js, Django, Git and GitHub.",
+      "text": "## How he builds systems\n\nHe enjoys end-to-end systems that cover: data collection pipelines, feature engineering, machine learning and deep learning models, LLM and RAG systems, evaluation frameworks, and deployment-ready workflows.",
       "embedding": null
     },
     {
       "id": "jk-4",
-      "text": "## Technical skills — machine learning and AI\n\nMachine learning, deep learning, time-series forecasting, feature engineering, sentiment analysis, LLM engineering, prompt engineering, RAG systems, vector databases, and human-in-the-loop AI systems.",
+      "text": "## Technical skills — programming\n\nPython, SQL, Java, C++, JavaScript, React, Node.js, Django, Git and GitHub.",
       "embedding": null
     },
     {
       "id": "jk-5",
-      "text": "## Models and frameworks\n\nXGBoost, Random Forest, AutoGluon, Chronos, Temporal Fusion Transformer, LSTM, ARIMAX, VAR, KNIME.",
+      "text": "## Technical skills — machine learning and AI\n\nMachine learning, deep learning, time-series forecasting, feature engineering, sentiment analysis, LLM engineering, prompt engineering, RAG systems, vector databases, and human-in-the-loop AI systems.",
       "embedding": null
     },
     {
       "id": "jk-6",
-      "text": "## Data and infrastructure\n\nData analysis, data visualization, web scraping, blockchain data processing, MLOps concepts, Docker (learning), MLflow (learning), and cloud AI systems with interest in AWS and GCP.",
+      "text": "## Models and frameworks\n\nXGBoost, Random Forest, AutoGluon, Chronos, Temporal Fusion Transformer, LSTM, ARIMAX, VAR, KNIME.",
       "embedding": null
     },
     {
       "id": "jk-7",
-      "text": "## Major project — cryptocurrency forecasting\n\n**Title:** Multivariate Forecasting and Predictability Analysis of Cryptocurrency Market Dynamics.\n\n**Focus:** Predicting cryptocurrency returns, volatility, and trading volume for BTC, ETH, and SOL across hourly and daily horizons.\n\n**Data sources:** Binance OHLCV market data; blockchain metrics from Dune; macroeconomic indicators from FRED.\n\n**Techniques:** Statistical forecasting, machine learning, deep learning, transformer-based forecasting.\n\n**Models used:** ARIMAX, VAR, Random Forest, XGBoost, LSTM, TimeGPT, TimesFM, Chronos, Temporal Fusion Transformer.\n\n**Evaluation metrics:** MAE, RMSE, MAPE, MASE, R².\n\n**Themes explored:** Rolling forecasts, regime detection, feature engineering, combining blockchain metrics with OHLCV, multi-timeframe modelling.",
+      "text": "## Data and infrastructure\n\nData analysis, data visualization, web scraping, blockchain data processing, MLOps concepts, Docker (learning), MLflow (learning), and cloud AI systems with interest in AWS and GCP.",
       "embedding": null
     },
     {
       "id": "jk-8",
-      "text": "## Major project — Indonesian stock sentiment\n\n**Goal:** Build an AI pipeline mapping Indonesian financial news sentiment to individual stocks.\n\n**System features:** News scraping; hybrid search and clustering; similar-news grouping; sentiment scoring; category classification; stakeholder or entity mapping; daily stock sentiment aggregation.\n\n**Research areas:** LLM classification systems, FinBERT-style sentiment scoring, RAG-based knowledge systems, cached inference pipelines, event-to-sector impact analysis.",
+      "text": "## Libraries and tooling (hands-on)\n\nCommon Python stack: pandas, NumPy, scikit-learn; Jupyter notebooks for exploration alongside packaged `src/` layouts and CLIs where repos allow. Classical stats/time series where relevant (e.g. statsmodels-style workflows). Deep learning and CV: PyTorch-oriented workflows and Ultralytics YOLO for detection projects. Web portfolio: Next.js, React, TypeScript, Tailwind CSS v4. Assistant on this site: Groq LLM plus optional Hugging Face embeddings; RAG retrieval over `content/knowledge/rag.md`. Interests: LangChain / LangGraph, vector databases, CI (e.g. GitHub Actions) as used in repositories.",
       "embedding": null
     },
     {
       "id": "jk-9",
-      "text": "## Broker flow and Indonesian market analysis\n\nFocus on how broker activity and foreign flows relate to Indonesian stock movements. Areas explored include broker transaction analysis, foreign buy and sell tracking, order-book behaviour, retail versus institutional behaviour, “bandar” flow analysis, Indonesian stock market psychology.",
+      "text": "## Quantified results snapshot (from published repos)\n\nFigures below come from README-style summaries in his GitHub projects and may reflect a specific baseline run; always refer to the repository for full context.\n\n- **Weather prediction (`weather-prediction`):** RainTomorrow classification; best baseline **Random Forest**; reported **test accuracy ~0.86**; positive-class **F1 ~0.60** with documented recall trade-offs.\n- **Brain tumor MRI (`brain-tumor-image-classification`):** Handcrafted features (LBP + HOG) + SVM; baseline **test accuracy ~81.36%**; strong **F1 on Pituitary (~0.96)** and **No Tumor (~0.90)**; **Meningioma recall ~0.50** noted as a key improvement area.\n- **Skin disease detection (`skin-disease-object-detection`):** YOLO workflow; baseline snapshot **Box mAP@50 ~0.696**, **mAP@50-95 ~0.418**; precision/recall snapshot **~0.663 / 0.666** (epoch/experiment-specific).\n- **Cryptocurrency forecasting (`cryptocurrency-time-series-modelling`):** Multiple models and metrics (**MAE, RMSE, MAPE, MASE, R²**) as described in the major project section below.",
       "embedding": null
     },
     {
       "id": "jk-10",
-      "text": "## AI and computer vision\n\nExperience with image detection and object detection, AI model deployment concepts, portfolio-ready GitHub structures. Professional practices include clean repositories, reproducibility, README documentation, and separating notebooks from production-oriented code.",
+      "text": "## Major project — cryptocurrency forecasting\n\n**Title:** Multivariate Forecasting and Predictability Analysis of Cryptocurrency Market Dynamics.\n\n**Focus:** Predicting cryptocurrency returns, volatility, and trading volume for BTC, ETH, and SOL across hourly and daily horizons.\n\n**Data sources:** Binance OHLCV market data; blockchain metrics from Dune; macroeconomic indicators from FRED.\n\n**Techniques:** Statistical forecasting, machine learning, deep learning, transformer-based forecasting.\n\n**Models used:** ARIMAX, VAR, Random Forest, XGBoost, LSTM, TimeGPT, TimesFM, Chronos, Temporal Fusion Transformer.\n\n**Evaluation metrics:** MAE, RMSE, MAPE, MASE, R².\n\n**Themes explored:** Rolling forecasts, regime detection, feature engineering, combining blockchain metrics with OHLCV, multi-timeframe modelling.",
       "embedding": null
     },
     {
       "id": "jk-11",
-      "text": "## Research and ethics interests\n\nInterests include AI ethics, Indigenous Data Sovereignty, CARE principles, human–AI collaboration, responsible AI governance, and ethical use of generative AI. Academic habits include APA 7th referencing, synthesis, critical evaluation frameworks, and the Gibbs Reflective Framework.",
+      "text": "## Major project — Indonesian stock sentiment\n\n**Goal:** Build an AI pipeline mapping Indonesian financial news sentiment to individual stocks.\n\n**System features:** News scraping; hybrid search and clustering; similar-news grouping; sentiment scoring; category classification; stakeholder or entity mapping; daily stock sentiment aggregation.\n\n**Research areas:** LLM classification systems, FinBERT-style sentiment scoring, RAG-based knowledge systems, cached inference pipelines, event-to-sector impact analysis.",
       "embedding": null
     },
     {
       "id": "jk-12",
-      "text": "## Working style\n\n**Strengths:** Analytical thinking, data analysis, structured problem solving, curiosity-driven learning, building practical AI systems, strong technical exploration.\n\n**Growth areas:** Communication, teamwork, adaptability, reducing overthinking and perfectionism, improving creative ideation.",
+      "text": "## Broker flow and Indonesian market analysis\n\nFocus on how broker activity and foreign flows relate to Indonesian stock movements. Areas explored include broker transaction analysis, foreign buy and sell tracking, order-book behaviour, retail versus institutional behaviour, “bandar” flow analysis, Indonesian stock market psychology.",
       "embedding": null
     },
     {
       "id": "jk-13",
+      "text": "## AI and computer vision\n\nExperience with image detection and object detection, AI model deployment concepts, portfolio-ready GitHub structures. Professional practices include clean repositories, reproducibility, README documentation, and separating notebooks from production-oriented code.",
+      "embedding": null
+    },
+    {
+      "id": "jk-14",
+      "text": "## GitHub profile snapshot\n\nGitHub username: `JKennethG283`.\n\nPublic profile summary: 7 public repositories, account created in 2024, active updates through 2026.\n\nRepository themes include:\n- Time-series and tabular ML (`cryptocurrency-time-series-modelling`, `weather-prediction`)\n- NLP for financial sentiment (`news-sentiment-analysis-indonesian-market`)\n- Computer vision (`brain-tumor-image-classification`, `skin-disease-object-detection`)\n- Market microstructure analysis (`indonesian-broker-flow`)\n- Portfolio website engineering (`website-portfolio`)\n\nProject documentation style on GitHub emphasizes practical, production-oriented structure with reproducibility, clear README guidance, and script/CLI workflows.",
+      "embedding": null
+    },
+    {
+      "id": "jk-15",
+      "text": "## Personal Q&A (assistant context)\n\nThese answers are for the portfolio assistant when users ask about motivations, process, values, or fit.\n\n### What AI problems are you most excited to solve?\n\nHe is especially motivated by how equity and cryptocurrency markets behave and how far prediction can go with multimodal signals: LLMs and NLP for news and sentiment, engineered features from price and on-chain data, broker-flow and microstructure analysis, and combining those modalities with classical time series, deep learning, machine learning, and reinforcement learning to forecast returns, volatility, and volume.\n\n### Why AI, finance, and Indonesia?\n\nHe has been curious about technology since childhood. From around age sixteen he became deeply interested in stocks and whether their movement could be predicted systematically. AI looked like the right toolkit for that problem. Beyond markets, he sees broad ways AI can improve everyday life; he cares particularly about Indonesia, where adoption lags many peer countries and local impact can be large.\n\n### What project most shaped how you build professionally?\n\nHis university capstone on cryptocurrency time-series forecasting was a turning point. It pushed him toward professional practice: complete documentation, reproducible results, a clear executive summary, easy setup for others (environments, scripts, configs), honest limitation and error analysis, versioned data and code, and evaluation that holds up outside a single notebook.\n\n### How do you start and run a new project?\n\nHe begins with research: what to learn, what to implement, and what success looks like. He lays down building blocks in order, validates each step against the goal, then continues. When blockers appear, he researches again, experiments, and iterates until the path is sound.\n\n### What are your non-negotiables for model and system quality?",
+      "embedding": null
+    },
+    {
+      "id": "jk-16",
+      "text": "When blockers appear, he researches again, experiments, and iterates until the path is sound.\n\n### What are your non-negotiables for model and system quality?\n\nReliability (behaviour you can trust under drift and edge cases), alignment with business or research goals, rigorous evaluation (not just leaderboard metrics), and safety and governance (data use, bias, and deployment risk).\n\n### What should recruiters and clients remember about you?\n\nHe wants to be known as a production-first engineer. A project is not “done” when accuracy is high on a laptop; it is done when the work is containerized (e.g. Docker), trackable (e.g. MLflow or equivalent), and runnable reliably in a pipeline. He bridges exploratory data science and stable software engineering so code stays maintainable, reproducible, and scalable.\n\n### What are you focusing on learning now?\n\nHe is deepening NLP, LLMs, generative AI, and reinforcement learning as one arc: NLP for the text and signal foundation, LLMs and GenAI for production systems, advanced RAG, and agents that perform real tasks, plus reinforcement learning for decision-making, reasoning-oriented models, and alignment patterns such as RLHF—so systems are not only capable but safer and more dependable in production.\n\n### What team environment helps you do your best work?\n\nHe does best in an egoless, production-minded culture that pairs clear process with real autonomy. Technically, he values documentation, containerization, and code review as defaults. Interpersonally, he values radical candor and psychological safety: room to dissect model failures, learn from data, and pivot quickly without blame.\n\n### Background, location, and job search\n\nHe is 22, Indonesian, and is completing his studies in Sydney, Australia (Bachelor of Artificial Intelligence at UTS), with graduation imminent. He is open to any suitable opportunity—internships, graduate programs, full-time roles, or other arrangements—and wants to start work as soon as possible.",
+      "embedding": null
+    },
+    {
+      "id": "jk-17",
+      "text": "nent. He is open to any suitable opportunity—internships, graduate programs, full-time roles, or other arrangements—and wants to start work as soon as possible. If an employer needs him to stay in Australia, he can pursue a post-study work visa (the common graduate pathway, e.g. Subclass 485) as required. He is flexible about location and is willing to relocate within Australia or internationally.\n\n### Languages\n\nHe is fluent in English and Indonesian, and has moderate proficiency in Chinese.\n\n### Identity\n\nHe is male and straight.",
+      "embedding": null
+    },
+    {
+      "id": "jk-18",
+      "text": "lia or internationally.\n\n### Languages\n\nHe is fluent in English and Indonesian, and has moderate proficiency in Chinese.\n\n### Identity\n\nHe is male and straight.",
+      "embedding": null
+    },
+    {
+      "id": "jk-19",
+      "text": "## Contact and preferred channels\n\n- **Email:** jonathan.kenneth.gunawan@gmail.com  \n- **LinkedIn:** https://www.linkedin.com/in/jonathan-kenneth-gunawan-8149782a3/  \n- **GitHub:** https://github.com/JKennethG283/  \n\nFor roles, collaborations, or clarifications on projects, email or LinkedIn are preferred.",
+      "embedding": null
+    },
+    {
+      "id": "jk-20",
+      "text": "## Assistant behaviour boundaries\n\nWhen answering as the portfolio assistant:\n\n- Do **not** give immigration or legal advice; for Australian visas (including post-study pathways), point users to official **Department of Home Affairs** information or a registered migration agent. Jonathan may pursue pathways such as a post-study work visa where eligible—details are individual.\n- Do **not** negotiate salary or give binding financial/legal commitments on his behalf.\n- Do **not** fabricate employers, offers, grades, or metrics; for anything sensitive or time-sensitive, ask the user to contact Jonathan directly.\n- Investment outputs are **not financial advice**; market and model outputs are educational and technical unless explicitly stated otherwise.",
+      "embedding": null
+    },
+    {
+      "id": "jk-21",
+      "text": "## Work authorization (factual, non-legal)\n\nHe is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and post-study options depend on visa subclass and individual circumstances; official sources should be consulted. He has indicated openness to applying for post-study work pathways (e.g. Subclass **485**-style graduate streams where eligible) if needed for roles in Australia.",
+      "embedding": null
+    },
+    {
+      "id": "jk-22",
+      "text": "## Repository status (portfolio-ready vs work in progress)\n\n- **Documented / portfolio showcases:** `weather-prediction`, `brain-tumor-image-classification`, `skin-disease-object-detection`, `cryptocurrency-time-series-modelling`, `website-portfolio` (and this live portfolio deployment).\n- **Active or evolving (WIP):** `news-sentiment-analysis-indonesian-market`, `indonesian-broker-flow`—features and evaluation may be incomplete; treat claims as directional unless the README states otherwise.",
+      "embedding": null
+    },
+    {
+      "id": "jk-23",
+      "text": "## Collaboration and leadership context\n\nMost **public GitHub** work is **individual** portfolio and coursework-driven; university projects may include **team components**. He values peer review, clear handoffs, and psychological safety in professional settings and is **actively improving** communication and teamwork through group coursework, presenting results, and soliciting feedback on repositories.",
+      "embedding": null
+    },
+    {
+      "id": "jk-24",
+      "text": "## Interests outside technical work\n\nHe follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work and study he enjoys **hiking**, **badminton**, **watching movies**, and **playing video games**.",
+      "embedding": null
+    },
+    {
+      "id": "jk-25",
+      "text": "## This website — FAQ for visitors\n\n- **What is this site?** A personal portfolio for Jonathan Kenneth Gunawan: About, Skills, **Playground** (interactive demos), **Featured work** (project carousel with GitHub links), Experience, and Contact.\n- **Playground demos:** **Object detection** finger-counting demo at `/object-detection`; **Rock–Paper–Scissors** vs an adaptive Markov-style opponent at `/rps-markov`.\n- **Portfolio assistant chat:** Uses retrieval-augmented generation over **`content/knowledge/rag.md`** plus an LLM; answers should reflect this published profile. **Time-sensitive** facts (visa rules, job status, grades) may change—visitors should confirm with Jonathan directly.",
+      "embedding": null
+    },
+    {
+      "id": "jk-26",
+      "text": "## Research and ethics interests\n\nInterests include AI ethics, Indigenous Data Sovereignty, CARE principles, human–AI collaboration, responsible AI governance, and ethical use of generative AI. Academic habits include APA 7th referencing, synthesis, critical evaluation frameworks, and the Gibbs Reflective Framework.",
+      "embedding": null
+    },
+    {
+      "id": "jk-27",
+      "text": "## Working style\n\n**Strengths:** Analytical thinking, data analysis, structured problem solving, curiosity-driven learning, building practical AI systems, strong technical exploration.\n\n**Growth areas:** Communication, teamwork, adaptability, reducing overthinking and perfectionism, improving creative ideation.\n\n**How growth ties to strengths:** He seeks **production-minded teams** with candor and psychological safety (see Personal Q&A). He is deliberately strengthening **communication and teamwork** in parallel with technical depth—through collaborative coursework, writing for teammates and reviewers, and practicing clear explanations of limitations, metrics, and deployment constraints so collaboration scales beyond solo repos.",
+      "embedding": null
+    },
+    {
+      "id": "jk-28",
       "text": "## Career direction\n\n**Primary target roles:** Machine Learning Engineer; Financial AI Engineer; Time-Series Forecasting Specialist.\n\n**Secondary interests:** Quantitative Data Science; AI Research Engineering; LLM Engineering.\n\n**Industry direction:** Finance and AI systems; crypto analytics; trading intelligence; large-scale AI infrastructure.",
       "embedding": null
     }

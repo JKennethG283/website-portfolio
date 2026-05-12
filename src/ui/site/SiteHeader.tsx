@@ -6,6 +6,7 @@ const SECTION_IDS = [
   "home",
   "about",
   "skills",
+  "playground",
   "projects",
   "experience",
   "contact",
@@ -92,6 +93,7 @@ export function SiteHeader() {
         >
           {navLink("about", "About")}
           {navLink("skills", "Skills")}
+          {navLink("playground", "Playground")}
           {navLink("projects", "Projects")}
           {navLink("experience", "Experience")}
           {navLink("contact", "Contact")}

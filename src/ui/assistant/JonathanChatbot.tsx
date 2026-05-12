@@ -1,11 +1,14 @@
 "use client";
 
+import "./chat-panel.css";
+
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import {
   useCallback,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
   useSyncExternalStore,
@@ -18,6 +21,41 @@ import {
   type WebSpeechRecognitionErrorEvent,
   type WebSpeechRecognitionEvent,
 } from "./web-speech";
+
+function AssistantAvatar({
+  thinking,
+  className = "",
+}: {
+  thinking?: boolean;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e8f1ff] text-[#0d6efd] ring-1 ring-[#dce4ef] ${
+        thinking ? "chat-assistant-avatar--thinking" : ""
+      } ${className}`.trim()}
+      aria-hidden
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+        <path d="M5 3v4" />
+        <path d="M19 17v4" />
+        <path d="M3 5h4" />
+        <path d="M17 19h4" />
+      </svg>
+    </span>
+  );
+}
 
 function MicIcon({ className }: { className?: string }) {
   return (
@@ -73,6 +111,7 @@ export function JonathanChatbot() {
     () => false,
   );
   const inputRef = useRef<HTMLInputElement>(null);
+  const messagesScrollRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<WebSpeechRecognition | null>(null);
 
   const { messages, sendMessage, status, error } = useChat({
@@ -82,6 +121,17 @@ export function JonathanChatbot() {
   });
 
   const busy = status === "submitted" || status === "streaming";
+
+  useLayoutEffect(() => {
+    if (!open) return;
+    const el = messagesScrollRef.current;
+    if (!el) return;
+    const snapToBottom = () => {
+      el.scrollTop = el.scrollHeight;
+    };
+    snapToBottom();
+    requestAnimationFrame(snapToBottom);
+  }, [open, messages, status, busy, error]);
 
   const stopRecognition = useCallback(() => {
     const r = recognitionRef.current;
@@ -98,6 +148,18 @@ export function JonathanChatbot() {
     setListening(false);
   }, []);
 
+  const inputValueRef = useRef(inputValue);
+  const busyRef = useRef(busy);
+  const sendMessageRef = useRef(sendMessage);
+  const stopRecognitionRef = useRef(stopRecognition);
+
+  useEffect(() => {
+    inputValueRef.current = inputValue;
+    busyRef.current = busy;
+    sendMessageRef.current = sendMessage;
+    stopRecognitionRef.current = stopRecognition;
+  }, [inputValue, busy, sendMessage, stopRecognition]);
+
   useEffect(() => {
     const Ctor = getSpeechRecognitionCtor();
     if (!Ctor) return;
@@ -109,10 +171,24 @@ export function JonathanChatbot() {
 
     recognition.onresult = (ev) => {
       const t = collectFinalTranscript(ev as unknown as WebSpeechRecognitionEvent);
-      if (t) {
-        setInputValue((prev) => (prev.trim() ? `${prev.trim()} ` : "") + t);
-        setSpeechHint(null);
+      if (!t) return;
+      setSpeechHint(null);
+
+      const prev = inputValueRef.current;
+      const full = (prev.trim() ? `${prev.trim()} ` : "") + t;
+
+      stopRecognitionRef.current();
+
+      const trimmed = full.trim();
+      if (!trimmed) return;
+
+      if (busyRef.current) {
+        setInputValue(trimmed);
+        return;
       }
+
+      sendMessageRef.current({ text: trimmed });
+      setInputValue("");
     };
 
     recognition.onerror = (ev) => {
@@ -226,44 +302,79 @@ export function JonathanChatbot() {
         </header>
 
         <div className="flex min-h-0 flex-1 flex-col gap-3 bg-white">
-          <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-3 text-sm">
+          <div
+            ref={messagesScrollRef}
+            className="chat-messages-scroll min-h-0 flex-1 space-y-4 overflow-y-auto overflow-x-hidden px-4 py-3 text-sm"
+          >
             {messages.length === 0 && (
               <p className="text-[#3d4a63]">
                 Ask about Jonathan&apos;s studies at UTS, projects (crypto
                 forecasting, Indonesian markets), skills, or career interests.
-                {sttSupported ? " Use the microphone button to dictate." : ""}
+                {sttSupported
+                  ? " Use the microphone button to dictate—your message sends automatically when you finish speaking."
+                  : ""}
               </p>
             )}
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex flex-col gap-1 ${
-                  message.role === "user" ? "items-end" : "items-start"
-                }`}
-              >
-                <span className="text-xs font-semibold uppercase tracking-wide text-[#6b7a93]">
-                  {message.role === "user" ? "You" : "Assistant"}
-                </span>
-                <div
-                  className={`max-w-[95%] rounded-2xl px-3 py-2 leading-relaxed ${
-                    message.role === "user"
-                      ? "bg-[#0d6efd] text-white"
-                      : "bg-[#f4f7fb] text-[#0c1222] ring-1 ring-[#dce4ef]"
-                  }`}
-                >
-                  {message.parts.map((part, index) =>
-                    part.type === "text" ? (
-                      <span key={index} className="whitespace-pre-wrap">
-                        {part.text}
-                      </span>
-                    ) : null,
-                  )}
+            {messages.map((message, index) => {
+              const isAssistant = message.role === "assistant";
+              const isLast = index === messages.length - 1;
+              const avatarThinking = isAssistant && isLast && busy;
+
+              if (message.role === "user") {
+                return (
+                  <div
+                    key={message.id}
+                    className="flex flex-col items-end gap-1"
+                  >
+                    <span className="text-xs font-semibold uppercase tracking-wide text-[#6b7a93]">
+                      You
+                    </span>
+                    <div
+                      className="chat-bubble-user max-w-[95%] rounded-2xl bg-[#0d6efd] px-3 py-2 leading-relaxed text-white"
+                    >
+                      {message.parts.map((part, i) =>
+                        part.type === "text" ? (
+                          <span key={i} className="whitespace-pre-wrap">
+                            {part.text}
+                          </span>
+                        ) : null,
+                      )}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <div key={message.id} className="flex gap-2">
+                  <AssistantAvatar thinking={avatarThinking} />
+                  <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-[#6b7a93]">
+                      Assistant
+                    </span>
+                    <div className="chat-bubble-assistant max-w-[95%] rounded-2xl bg-[#f4f7fb] px-3 py-2 leading-relaxed text-[#0c1222] ring-1 ring-[#dce4ef]">
+                      {message.parts.map((part, i) =>
+                        part.type === "text" ? (
+                          <span key={i} className="whitespace-pre-wrap">
+                            {part.text}
+                          </span>
+                        ) : null,
+                      )}
+                    </div>
+                  </div>
                 </div>
+              );
+            })}
+            {busy && messages[messages.length - 1]?.role !== "assistant" ? (
+              <div className="flex items-center gap-2">
+                <AssistantAvatar thinking />
+                <p className="flex items-center gap-0.5 text-xs text-[#6b7a93]">
+                  <span>Thinking</span>
+                  <span className="chat-thinking-dot">.</span>
+                  <span className="chat-thinking-dot">.</span>
+                  <span className="chat-thinking-dot">.</span>
+                </p>
               </div>
-            ))}
-            {busy && (
-              <p className="text-xs text-[#6b7a93]">Thinking…</p>
-            )}
+            ) : null}
             {error && (
               <div className="space-y-1 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
                 <p>
@@ -307,7 +418,9 @@ export function JonathanChatbot() {
                 placeholder="Ask a question…"
                 disabled={busy}
                 autoComplete="off"
-                className="min-w-0 flex-1 rounded-lg border border-[#dce4ef] bg-white px-3 py-2 text-sm text-[#0c1222] outline-none ring-[#0d6efd]/30 placeholder:text-[#6b7a93] focus:ring-2"
+                className={`min-w-0 flex-1 rounded-lg border border-[#dce4ef] bg-white px-3 py-2 text-sm text-[#0c1222] outline-none ring-[#0d6efd]/30 placeholder:text-[#6b7a93] focus:ring-2 ${
+                  busy ? "chat-input--busy" : ""
+                }`}
               />
               {sttSupported ? (
                 <button
@@ -321,7 +434,7 @@ export function JonathanChatbot() {
                   title={
                     listening
                       ? "Stop listening"
-                      : "Speak your question (browser speech-to-text)"
+                      : "Speak your question—it sends when you finish speaking"
                   }
                   className={`flex h-[38px] w-[42px] shrink-0 items-center justify-center rounded-lg border text-white transition disabled:opacity-50 ${
                     listening
@@ -354,7 +467,7 @@ export function JonathanChatbot() {
                 role="status"
                 aria-live="polite"
               >
-                Listening… speak now. Tap the mic again to stop.
+                Listening… speak now. Your message will send when you stop.
               </p>
             ) : null}
           </form>
