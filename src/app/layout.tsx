@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { JonathanChatbot } from "@/ui/assistant/JonathanChatbot";
+import { CursorGlow } from "@/ui/site/CursorGlow";
 
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col portfolio-body">
+        <CursorGlow />
         {children}
         <JonathanChatbot />
       </body>

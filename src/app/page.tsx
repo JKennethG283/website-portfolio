@@ -3,6 +3,7 @@ import Image from "next/image";
 import { SiteHeader } from "@/ui/site/SiteHeader";
 import { ProjectCarousel } from "@/ui/site/ProjectCarousel";
 import { RevealSection } from "@/ui/site/RevealSection";
+import { PlaygroundCards } from "@/ui/site/PlaygroundCards";
 
 const year = new Date().getFullYear();
 
@@ -112,29 +113,11 @@ export default function Home() {
             <div className="section-heading">
               <p className="section-label">Playground</p>
               <h2>Interactive AI demos</h2>
+              <p className="section-subtitle">
+                Try these live demos and see AI in action.
+              </p>
             </div>
-            <div className="skills-grid">
-              <article className="skill-card skill-card-link">
-                <h3>Object detection demo</h3>
-                <p>
-                  Click through to a live hand object detection page that counts
-                  how many fingers you raise using an existing model.
-                </p>
-                <a href="/object-detection" aria-label="Open object detection demo">
-                  Open demo
-                </a>
-              </article>
-              <article className="skill-card skill-card-link">
-                <h3>Adaptive RPS AI (Markov)</h3>
-                <p>
-                  Play rock-paper-scissors against an AI that learns from your move
-                  patterns and updates its predictions each round.
-                </p>
-                <a href="/rps-markov" aria-label="Open Markov RPS demo">
-                  Open demo
-                </a>
-              </article>
-            </div>
+            <PlaygroundCards />
           </div>
         </RevealSection>
 
