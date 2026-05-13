@@ -166,7 +166,7 @@ He is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and 
 
 Most **public GitHub** work is **individual** portfolio and coursework-driven; university projects may include **team components**. He values peer review, clear handoffs, and psychological safety in professional settings and is **actively improving** communication and teamwork through group coursework, presenting results, and soliciting feedback on repositories.
 
-## Interests outside technical work
+## Interests outside technical work/Hobbies
 
 He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work and study he enjoys **hiking**, **badminton**, **watching movies**, and **playing video games**.
 
