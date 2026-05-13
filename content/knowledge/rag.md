@@ -166,9 +166,9 @@ He is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and 
 
 Most **public GitHub** work is **individual** portfolio and coursework-driven; university projects may include **team components**. He values peer review, clear handoffs, and psychological safety in professional settings and is **actively improving** communication and teamwork through group coursework, presenting results, and soliciting feedback on repositories.
 
-## Interests outside technical work/Hobbies
+## Interests outside technical work / Hobbies
 
-He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work and study he enjoys **hiking**, **badminton**, **watching movies**, and **playing video games**.
+**Hobbies and personal interests:** He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work and study he enjoys **hiking**, **badminton**, **playing stocks**, **watching movies**, and **playing video games**. These activities help him recharge and stay curious; his market interest in particular feeds directly into his professional work on financial AI.
 
 ## This website — FAQ for visitors
 
@@ -187,6 +187,14 @@ Interests include AI ethics, Indigenous Data Sovereignty, CARE principles, human
 **Growth areas:** Communication, teamwork, adaptability, reducing overthinking and perfectionism, improving creative ideation.
 
 **How growth ties to strengths:** He seeks **production-minded teams** with candor and psychological safety (see Personal Q&A). He is deliberately strengthening **communication and teamwork** in parallel with technical depth—through collaborative coursework, writing for teammates and reviewers, and practicing clear explanations of limitations, metrics, and deployment constraints so collaboration scales beyond solo repos.
+
+## Future vision / Where he sees himself in the coming years
+
+In the coming years Jonathan sees himself becoming a **well-rounded AI expert** with deep command across the full spectrum of artificial intelligence—machine learning, deep learning, NLP, computer vision, reinforcement learning, generative AI, and production MLOps. He plans to have built and shipped a **large portfolio of projects** spanning financial forecasting, sentiment intelligence, trading systems, and LLM-powered products, establishing a strong professional track record.
+
+He envisions building a **successful career in AI**—whether as a Machine Learning Engineer, Financial AI Engineer, or AI Research Engineer at a leading company—gaining real-world experience designing, deploying, and scaling AI systems in production environments.
+
+Longer-term, he aspires to **build his own AI-driven projects and ventures**—products and tools that solve meaningful problems in finance, analytics, or everyday life. The goal is to create something **fruitful and lasting**: projects that grow into a business of his own, combining his technical expertise with entrepreneurial ambition. He wants to move from being an engineer who builds for others to someone who **creates, owns, and scales** AI products that make a real impact.
 
 ## Career direction
 
