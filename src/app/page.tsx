@@ -18,12 +18,12 @@ export default function Home() {
               <p className="eyebrow">Bachelor of Artificial Intelligence · UTS</p>
               <h1>
                 Hi, I am <span>Jonathan Kenneth Gunawan</span>. I build AI systems for
-                finance and language.
+                markets, language, and decision support.
               </h1>
               <p className="hero-description">
-                I work across machine learning, time-series forecasting, sentiment
-                analysis, and LLM/RAG—turning messy data into models and pipelines
-                you can evaluate and ship.
+                I work across full-stack AI products, machine learning,
+                time-series forecasting, sentiment analysis, and LLM/RAG—turning
+                messy data into models and pipelines you can evaluate and ship.
               </p>
               <ul className="hero-meta" aria-label="Focus areas">
                 <li>UTS · BSc AI</li>
@@ -62,6 +62,8 @@ export default function Home() {
                 I am a Bachelor of Artificial Intelligence student at the
                 University of Technology Sydney, focused on financial AI, time-series
                 forecasting, sentiment intelligence, and practical LLM/RAG systems.
+                My latest and largest project is Market Cerdas, a full-stack
+                AI-assisted ASX market research platform.
               </p>
               <p>
                 I enjoy full-stack AI work: data collection, feature engineering,
@@ -84,24 +86,34 @@ export default function Home() {
               <article className="skill-card">
                 <h3>Programming &amp; stack</h3>
                 <p>
-                  Python, SQL, Java, C++, JavaScript, React, Node.js, Django, Git
-                  and GitHub.
+                  Python, TypeScript, SQL, Java, C++, JavaScript, React, Vite,
+                  Node.js, Express, Django, Git and GitHub.
                 </p>
               </article>
               <article className="skill-card">
                 <h3>Machine learning &amp; AI</h3>
                 <p>
                   Deep learning, time-series forecasting, feature engineering,
-                  sentiment analysis, LLM engineering, prompt engineering, RAG,
-                  vector databases, human-in-the-loop systems.
+                  sentiment analysis, LLM engineering, Gemini-powered chat,
+                  prompt engineering, RAG, hybrid retrieval, embeddings, and
+                  human-in-the-loop systems.
                 </p>
               </article>
               <article className="skill-card">
                 <h3>Models &amp; data</h3>
                 <p>
                   XGBoost, Random Forest, AutoGluon, Chronos, TFT, LSTM, ARIMAX,
-                  VAR; data viz, web scraping, blockchain data, MLOps basics, Docker
-                  and MLflow (learning).
+                  VAR; data viz, web scraping, blockchain data, financial
+                  fundamentals scoring, technical-analysis tooling, MLOps basics,
+                  Docker and MLflow (learning).
+                </p>
+              </article>
+              <article className="skill-card">
+                <h3>Product &amp; deployment</h3>
+                <p>
+                  Express APIs, serverless deployment patterns, Vercel cron jobs,
+                  Vercel Blob snapshots, local fallback models, test suites, and
+                  deployment-minded project documentation.
                 </p>
               </article>
             </div>
@@ -128,6 +140,27 @@ export default function Home() {
               <h2>Featured work</h2>
             </div>
             <ProjectCarousel>
+              <article className="project-card">
+                <div className="project-preview gradient-three" />
+                <div className="project-content">
+                  <p className="project-meta">Latest &amp; largest · Full-stack AI markets</p>
+                  <h3>Market Cerdas</h3>
+                  <p>
+                    React + Express ASX market research platform with Gemini chat,
+                    snapshot-aware retrieval, News Impact sentiment dashboards,
+                    technical chart analysis, fundamentals scoring, watchlists,
+                    Python worker pipelines, Vercel cron, and Blob storage.
+                  </p>
+                  <a
+                    href="https://stock-website-sigma.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open the live Market Cerdas website"
+                  >
+                    Open website
+                  </a>
+                </div>
+              </article>
               <article className="project-card">
                 <div className="project-preview gradient-one" />
                 <div className="project-content">

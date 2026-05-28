@@ -2,35 +2,35 @@
 
 ## Overview
 
-Jonathan Kenneth is a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS). His interests center on machine learning, financial AI systems, time-series forecasting, sentiment analysis, and applications of large language models and RAG. He focuses on building end-to-end AI systems for real-world financial and analytical problems, including cryptocurrency forecasting, Indonesian stock-market analysis, blockchain data integration, and AI-driven sentiment pipelines.
+Jonathan Kenneth is a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS). His interests center on machine learning, financial AI systems, time-series forecasting, sentiment analysis, full-stack AI products, and applications of large language models and RAG. He focuses on building end-to-end AI systems for real-world financial and analytical problems, including AI-assisted stock research, cryptocurrency forecasting, Indonesian stock-market analysis, blockchain data integration, and AI-driven sentiment pipelines.
 
 ## Elevator pitch
 
-Jonathan Kenneth Gunawan is a production-minded Bachelor of Artificial Intelligence student at UTS in Sydney, nearing graduation. He builds reproducible forecasting, NLP, broker-flow, and computer vision systems—with clear evaluation, containers/pipelines in mind, and public GitHub portfolios. Indonesian, age 22, fluent in English and Indonesian and moderate in Chinese; actively seeking internships, graduate programs, or full-time roles worldwide.
+Jonathan Kenneth Gunawan is a production-minded Bachelor of Artificial Intelligence student at UTS in Sydney, nearing graduation. He builds reproducible full-stack AI market platforms, forecasting, NLP, broker-flow, and computer vision systems—with clear evaluation, containers/pipelines in mind, and public GitHub portfolios. Indonesian, age 22, fluent in English and Indonesian and moderate in Chinese; actively seeking internships, graduate programs, or full-time roles worldwide.
 
 ## How he builds systems
 
-He enjoys end-to-end systems that cover: data collection pipelines, feature engineering, machine learning and deep learning models, LLM and RAG systems, evaluation frameworks, and deployment-ready workflows.
+He enjoys end-to-end systems that cover: data collection pipelines, feature engineering, machine learning and deep learning models, LLM and RAG systems, API design, worker pipelines, evaluation frameworks, and deployment-ready workflows.
 
 ## Technical skills — programming
 
-Python, SQL, Java, C++, JavaScript, React, Node.js, Django, Git and GitHub.
+Python, TypeScript, SQL, Java, C++, JavaScript, React, Vite, Node.js, Express, Django, Git and GitHub.
 
 ## Technical skills — machine learning and AI
 
-Machine learning, deep learning, time-series forecasting, feature engineering, sentiment analysis, LLM engineering, prompt engineering, RAG systems, vector databases, and human-in-the-loop AI systems.
+Machine learning, deep learning, time-series forecasting, feature engineering, sentiment analysis, LLM engineering, Gemini-powered chat systems, prompt engineering, RAG systems, hybrid retrieval, embeddings, vector databases, and human-in-the-loop AI systems.
 
 ## Models and frameworks
 
-XGBoost, Random Forest, AutoGluon, Chronos, Temporal Fusion Transformer, LSTM, ARIMAX, VAR, KNIME.
+XGBoost, Random Forest, AutoGluon, Chronos, Temporal Fusion Transformer, LSTM, ARIMAX, VAR, KNIME, Google Gemini, TradingView Lightweight Charts, Recharts.
 
 ## Data and infrastructure
 
-Data analysis, data visualization, web scraping, blockchain data processing, MLOps concepts, Docker (learning), MLflow (learning), and cloud AI systems with interest in AWS and GCP.
+Data analysis, data visualization, web scraping, blockchain data processing, technical-analysis tooling, fundamentals scoring, Vercel serverless deployment patterns, scheduled refresh jobs, Blob-backed snapshots, MLOps concepts, Docker (learning), MLflow (learning), and cloud AI systems with interest in AWS and GCP.
 
 ## Libraries and tooling (hands-on)
 
-Common Python stack: pandas, NumPy, scikit-learn; Jupyter notebooks for exploration alongside packaged `src/` layouts and CLIs where repos allow. Classical stats/time series where relevant (e.g. statsmodels-style workflows). Deep learning and CV: PyTorch-oriented workflows and Ultralytics YOLO for detection projects. Web portfolio: Next.js, React, TypeScript, Tailwind CSS v4. Assistant on this site: Groq LLM plus optional Hugging Face embeddings; RAG retrieval over `content/knowledge/rag.md`. Interests: LangChain / LangGraph, vector databases, CI (e.g. GitHub Actions) as used in repositories.
+Common Python stack: pandas, NumPy, scikit-learn; Jupyter notebooks for exploration alongside packaged `src/` layouts, CLIs, and worker scripts where repos allow. Classical stats/time series where relevant (e.g. statsmodels-style workflows). Deep learning and CV: PyTorch-oriented workflows and Ultralytics YOLO for detection projects. Full-stack TypeScript: React, Vite, Express, API routes, local fallback models, charting, and test suites. Web portfolio: Next.js, React, TypeScript, Tailwind CSS v4. Assistant on this site: Groq LLM plus optional Hugging Face embeddings; RAG retrieval over `content/knowledge/rag.md`. Interests: LangChain / LangGraph, vector databases, CI (e.g. GitHub Actions) as used in repositories.
 
 ## Quantified results snapshot (from published repos)
 
@@ -40,6 +40,29 @@ Figures below come from README-style summaries in his GitHub projects and may re
 - **Brain tumor MRI (`brain-tumor-image-classification`):** Handcrafted features (LBP + HOG) + SVM; baseline **test accuracy ~81.36%**; strong **F1 on Pituitary (~0.96)** and **No Tumor (~0.90)**; **Meningioma recall ~0.50** noted as a key improvement area.
 - **Skin disease detection (`skin-disease-object-detection`):** YOLO workflow; baseline snapshot **Box mAP@50 ~0.696**, **mAP@50-95 ~0.418**; precision/recall snapshot **~0.663 / 0.666** (epoch/experiment-specific).
 - **Cryptocurrency forecasting (`cryptocurrency-time-series-modelling`):** Multiple models and metrics (**MAE, RMSE, MAPE, MASE, R²**) as described in the major project section below.
+- **Market Cerdas (`stock-website`):** Latest and largest project; a live full-stack React + Express ASX market research platform with Gemini chat, sentiment snapshots, technical chart analysis, fundamentals scoring, watchlists, Python worker pipelines, serverless APIs, Vercel cron, and Vercel Blob storage. The code repository is private; visitors should use the live website at https://stock-website-sigma.vercel.app/.
+
+## Major project — Market Cerdas (`stock-website`)
+
+**Status:** Jonathan's latest and biggest project.
+
+**Live website:** https://stock-website-sigma.vercel.app/
+
+**Repository access:** The GitHub repository `JKennethG283/stock-website` is private, so public visitors should be directed to the live website instead of GitHub.
+
+**Focus:** AI-assisted ASX market research through a chat-first interface, News Impact sentiment dashboards, technical chart analysis, fundamentals grading, live quote lookups, generated news-event views, and local watchlists.
+
+**Frontend:** Vite + React + TypeScript routes for home chat, market sentiment, fundamentals, broker-flow planning, sectors, stocks, generated news events, and watchlists. UI includes Lightweight Charts price views, support/resistance auto-analysis, classic pattern labels, drawing tools, Recharts dashboards, and chart-to-AI handoff.
+
+**Backend:** Express API layer serving chat, sentiment snapshot, stock quote, stock history, stock fundamentals, and fundamentals dashboard endpoints. The production build serves static frontend files and keeps the same API surface from `dist/server.js`.
+
+**LLM and retrieval:** Gemini-powered market chat with snapshot-aware hybrid retrieval, citations, technical/fundamental context injection, optional Gemini embedding similarity, cached embeddings, and markdown/chat helper tests.
+
+**Sentiment worker:** Python News Impact worker with fixture, live ASX ComNews, free-news, and golden-case modes. It turns ASX/macro/free-news sources into scored sentiment snapshots, event histories, factor candidates, source summaries, and stock-level context for the app and chatbot.
+
+**Deployment:** Vercel-supported serverless APIs, daily sentiment refresh cron, Vercel Blob snapshot reads/writes, bundled demo fallback snapshots for missing production data, protected cron routes via `CRON_SECRET`, and environment-based configuration from `.env.example`.
+
+**Testing and professional practice:** TypeScript tests cover API behavior, historical prices, fundamentals scoring, price charts, chart drawings, support/resistance analysis, navigation search, technical strategy, sentiment views, chat context, retrieval, Gemini chat helpers, and markdown. Python tests cover the sentiment worker pipeline.
 
 ## Major project — cryptocurrency forecasting
 
@@ -77,9 +100,10 @@ Experience with image detection and object detection, AI model deployment concep
 
 GitHub username: `JKennethG283`.
 
-Public profile summary: 7 public repositories, account created in 2024, active updates through 2026.
+Public profile summary: 7 public repositories, account created in 2024, active updates through 2026. Market Cerdas / `stock-website` is a private codebase with a live public deployment.
 
 Repository themes include:
+- Full-stack AI market research (Market Cerdas, live at https://stock-website-sigma.vercel.app/; private repo `stock-website`)
 - Time-series and tabular ML (`cryptocurrency-time-series-modelling`, `weather-prediction`)
 - NLP for financial sentiment (`news-sentiment-analysis-indonesian-market`)
 - Computer vision (`brain-tumor-image-classification`, `skin-disease-object-detection`)
@@ -159,7 +183,7 @@ He is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and 
 
 ## Repository status (portfolio-ready vs work in progress)
 
-- **Documented / portfolio showcases:** `weather-prediction`, `brain-tumor-image-classification`, `skin-disease-object-detection`, `cryptocurrency-time-series-modelling`, `website-portfolio` (and this live portfolio deployment).
+- **Documented / portfolio showcases:** Market Cerdas / `stock-website` (latest and biggest project, live website public but GitHub repo private), `weather-prediction`, `brain-tumor-image-classification`, `skin-disease-object-detection`, `cryptocurrency-time-series-modelling`, `website-portfolio` (and this live portfolio deployment).
 - **Active or evolving (WIP):** `news-sentiment-analysis-indonesian-market`, `indonesian-broker-flow`—features and evaluation may be incomplete; treat claims as directional unless the README states otherwise.
 
 ## Collaboration and leadership context
