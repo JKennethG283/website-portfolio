@@ -1,6 +1,37 @@
 "use client";
 
-import { useEffect, useRef, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
+
+const DEFAULT_LINE = "Ask me anything";
+const DRAG_LINES = [
+  "Whoa — easy does it!",
+  "I can fly? Sort of.",
+  "New patrol route unlocked.",
+  "Gently… I’m delicate tech.",
+  "Higher! No wait — lower!",
+  "Still online. Barely.",
+  "Put me somewhere interesting.",
+  "Is this a field trip?",
+  "Recalibrating… mid-air.",
+  "Don’t drop me, please.",
+  "Scenic view from up here.",
+  "I’ll walk again soon. Promise.",
+];
+const LAND_LINES = [
+  "Soft landing. Nice.",
+  "Back on my feet.",
+  "Position locked.",
+  "Ready when you are.",
+];
+
+function nextLine(pool: string[], previous: string | null) {
+  if (pool.length === 1) return pool[0];
+  let line = pool[Math.floor(Math.random() * pool.length)];
+  while (line === previous) {
+    line = pool[Math.floor(Math.random() * pool.length)];
+  }
+  return line;
+}
 
 export function RobotMascot({
   open,
@@ -23,6 +54,21 @@ export function RobotMascot({
   const suppressClick = useRef(false);
   const direction = useRef(-1);
   const resumeWalking = useRef<(delay?: number) => void>(() => {});
+  const dialogueTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastLine = useRef<string | null>(null);
+  const [line, setLine] = useState(DEFAULT_LINE);
+  const [dragging, setDragging] = useState(false);
+
+  function say(next: string, revertMs?: number) {
+    lastLine.current = next;
+    setLine(next);
+    if (dialogueTimer.current) clearTimeout(dialogueTimer.current);
+    if (revertMs == null) return;
+    dialogueTimer.current = setTimeout(() => {
+      setLine(DEFAULT_LINE);
+      dialogueTimer.current = null;
+    }, revertMs);
+  }
 
   useEffect(() => {
     const el = root.current;
@@ -123,6 +169,12 @@ export function RobotMascot({
     };
   }, [open]);
 
+  useEffect(() => {
+    return () => {
+      if (dialogueTimer.current) clearTimeout(dialogueTimer.current);
+    };
+  }, []);
+
   function start(event: PointerEvent<HTMLButtonElement>) {
     if (event.button !== 0 || !root.current) return;
     resumeWalking.current(2500);
@@ -149,18 +201,25 @@ export function RobotMascot({
     if (!session || session.id !== event.pointerId || !el) return;
     const dx = event.clientX - session.startX;
     const dy = event.clientY - session.startY;
+    const wasMoved = session.moved;
     if (Math.hypot(dx, dy) > 6) session.moved = true;
     if (!session.moved) return;
+    if (!wasMoved) {
+      setDragging(true);
+      say(nextLine(DRAG_LINES, lastLine.current));
+    }
     el.dataset.dragging = "true";
     el.style.left = `${Math.max(8, Math.min(innerWidth - el.offsetWidth - 8, session.left + dx))}px`;
     el.style.top = `${Math.max(8, Math.min(innerHeight - el.offsetHeight - 8, session.top + dy))}px`;
   }
   function end(event: PointerEvent<HTMLButtonElement>) {
     if (!drag.current || drag.current.id !== event.pointerId) return;
-    suppressClick.current =
-      drag.current.moved || event.type === "pointercancel";
+    const didMove = drag.current.moved;
+    suppressClick.current = didMove || event.type === "pointercancel";
     drag.current = null;
     if (root.current) root.current.dataset.dragging = "false";
+    setDragging(false);
+    if (didMove) say(nextLine(LAND_LINES, lastLine.current), 2200);
     resumeWalking.current(2500);
     if (event.currentTarget.hasPointerCapture(event.pointerId))
       event.currentTarget.releasePointerCapture(event.pointerId);
@@ -176,8 +235,15 @@ export function RobotMascot({
       onFocus={() => resumeWalking.current(0)}
       onBlur={() => resumeWalking.current()}
     >
-      <span className="mascot-invitation">
-        Ask me anything <span aria-hidden="true">↗</span>
+      <span
+        className="mascot-invitation"
+        data-tone={dragging ? "drag" : line === DEFAULT_LINE ? "idle" : "land"}
+        aria-live="polite"
+      >
+        {line}
+        {line === DEFAULT_LINE ? (
+          <span aria-hidden="true">↗</span>
+        ) : null}
       </span>
       <button
         className="mascot-button"

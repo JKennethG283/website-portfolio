@@ -27,7 +27,23 @@
   color: var(--text);
   font-size: 10px;
   box-shadow: 0 4px 22px #0002;
+  max-width: 148px;
+  text-align: center;
+  line-height: 1.25;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+.mascot-invitation[data-tone="idle"] {
   white-space: nowrap;
+}
+.mascot-invitation[data-tone="drag"] {
+  transform: translateY(-2px) rotate(-2deg);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line-strong));
+}
+.mascot-invitation[data-tone="land"] {
+  transform: translateY(0);
 }
 .mascot-invitation span {
   color: var(--accent);
