@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { RevealSection } from "@/components/site/RevealSection";
 import { ProjectStory } from "@/components/site/ProjectStory";
 import { ScrollAtmosphere } from "@/components/site/ScrollAtmosphere";
+import { ProjectMap } from "@/features/project-map/ProjectMap";
 
 import {
   featuredProjects,
@@ -137,6 +138,10 @@ export default function Home() {
             <p>
               From a question to a working system.
               <br />A few things I’ve been building.
+              <br />
+              <a href="#project-map" className="text-link">
+                Explore the project map <span aria-hidden="true">↗</span>
+              </a>
             </p>
           </RevealSection>
           <ProjectStory projects={featuredProjects} />
@@ -209,6 +214,8 @@ export default function Home() {
             </details>
           </RevealSection>
         </section>
+
+        <ProjectMap />
 
         <RevealSection
           className="about-landscape"
