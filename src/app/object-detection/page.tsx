@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FingerCounter } from "@/ui/object-detection/FingerCounter";
+import { FingerCounter } from "@/features/object-detection/FingerCounter";
 
 export default function ObjectDetectionPage() {
   return (

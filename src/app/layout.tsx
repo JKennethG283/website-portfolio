@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 
-import { JonathanChatbot } from "@/ui/assistant/JonathanChatbot";
-import { CursorGlow } from "@/ui/site/CursorGlow";
+import { JonathanChatbot } from "@/features/assistant/JonathanChatbot";
 
 import "./globals.css";
 
-const inter = Inter({
+const manrope = Manrope({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Jonathan Kenneth — Portfolio",
   description:
-    "AI and machine learning portfolio — forecasting, financial NLP, and LLM systems.",
+    "AI product developer and Gradstack intern. Explore agent workflows, financial AI, voice-first mobile products, and machine learning research.",
 };
 
 export default function RootLayout({
@@ -23,9 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col portfolio-body">
-        <CursorGlow />
         {children}
         <JonathanChatbot />
       </body>

@@ -2,14 +2,22 @@
 
 Personal portfolio site for **Jonathan Kenneth Gunawan** — Bachelor of Artificial Intelligence (UTS). Built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and the **App Router** (`src/app/`).
 
-Live styling combines Tailwind with `src/styles/portfolio.css` (layout, sections, demos).
+Styling combines Tailwind with `src/styles/portfolio.css` (shared foundations and demos) and `src/styles/landscape.css` (the Signal & Landscape visual theme).
 
 ## Features
 
-- **One-page portfolio:** hero, about (with profile photo), skills, playground, featured projects (carousel with GitHub links), experience, contact.
+- **One-page portfolio:** photographic hero, Gradstack internship (July 2026–present), scroll-driven featured products, supporting contributions, expandable earlier ML work, about, toolkit, playground, and contact.
+- **Project stories:** `/work/flowstudio`, `/work/market-cerdas`, `/work/haven-ai`, and `/work/serendip-tg` provide public product and contribution overviews. Team roles and development status are explicit; private source links are omitted.
 - **Playground:** hand **object detection** demo (`/object-detection`) and **Rock–Paper–Scissors** vs a Markov-style opponent (`/rps-markov`).
 - **Portfolio assistant:** floating chat panel with **RAG** over `content/knowledge/rag.md` and streaming replies via **Groq**.
-- **Animations:** section scroll-reveal, hero stagger, chat bubble motion (respects `prefers-reduced-motion`).
+- **Animations:** native-scroll hero parallax, a sticky project gallery with scroll-linked image crossfades, section reveals, and hover transitions. Mobile and reduced-motion layouts show individual project images; reduced motion also disables smooth scrolling and animations.
+- **Accessibility:** skip link, keyboard focus indicators, Escape-to-close menus and assistant, focus return, and content visible before JavaScript loads.
+
+### Visual theme
+
+The homepage pairs midnight blue and icy lavender with atmospheric photography, Space Grotesk headings, and Manrope body text. Images are hosted locally and served through Next.js image optimization. Photography sources are recorded in `public/images/landscapes/CREDITS.md`; inspected product captures and their scope are recorded in `public/images/projects/CREDITS.md`. The Haven images are clean web previews, not demonstrations of native voice capabilities.
+
+`src/data/portfolio.ts` owns the public featured, supporting, and earlier project lists. `src/data/project-case-studies.ts` contains the longer project narratives. `ProjectStory.tsx` handles image transitions; `ProjectVisual.tsx` presents product captures. `ScrollAtmosphere.tsx` handles hero parallax and reading progress with animation-frame updates. Neither motion component replaces native scrolling or requires an animation library.
 
 ## Quick start
 
@@ -49,16 +57,36 @@ For **building** the RAG index with embeddings locally, use `npm run rag:build` 
 
 After editing `rag.md`, run `npm run rag:index` (or `rag:build` if you use embeddings) before deploying.
 
-## Project layout (high level)
+## Project layout
 
 ```
-src/app/           App Router pages & API routes (`api/chat`, demos)
-src/ui/            Site shell, carousel, reveal sections, assistant UI
-src/server/        RAG retrieval, assistant system prompt
-src/data/          rag-index.json (generated)
-content/knowledge/ rag.md (source of truth for RAG text)
-public/images/     Static assets (e.g. profile photo)
+src/
+  app/                      App Router pages, layouts, global CSS entry, API routes
+  components/site/          Shared site UI: header, project story, scroll effects, reveal
+  features/
+    assistant/              Chat UI, speech helpers, and chat styles
+    object-detection/       Camera and hand landmark demo
+    rps/                    RPS game UI and its Markov model
+  server/
+    assistant/              Assistant system prompt
+    rag/                    Retrieval, embeddings, chunking, and types
+  data/                     Generated rag-index.json
+  styles/                   Shared portfolio styles
+content/knowledge/          Markdown source of truth for RAG
+scripts/                   RAG index generation and embedding commands
+public/images/             Portfolio photos and demo images
+public/mediapipe/           Browser-served model and WASM runtime assets
 ```
+
+### Where new files belong
+
+- Keep route entry points and page composition in `src/app/`.
+- Keep a feature's components, helpers, types, and styles together in `src/features/<feature>/`. Use relative imports within a feature, such as `./markov`.
+- Put shared presentation components in `src/components/`. Promote feature code here when it is needed across features.
+- Keep API credentials, retrieval, and other backend code in `src/server/`; browser components must not import these modules. Build scripts may import the pure RAG chunking utilities and types.
+- Use the `@/` alias for imports across folders and import modules directly rather than adding barrel files.
+- Edit knowledge in `content/knowledge/` and regenerate `src/data/rag-index.json` with the existing RAG commands. Do not edit the generated index by hand.
+- Keep framework configuration at the repository root and URL-addressable assets in `public/`.
 
 ## Deployment (e.g. Vercel)
 

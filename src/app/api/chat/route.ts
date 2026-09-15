@@ -11,6 +11,8 @@ import { retrieveForQuery } from "@/server/rag/retrieve";
 
 export const maxDuration = 30;
 
+const DEFAULT_GROQ_CHAT_MODEL = "openai/gpt-oss-20b";
+
 const requestSchema = z.object({
   messages: z.array(z.custom<UIMessage>()),
 });
@@ -76,9 +78,10 @@ export async function POST(req: Request) {
   const groq = createGroq({
     apiKey: process.env.GROQ_API_KEY,
   });
+  const model = process.env.GROQ_CHAT_MODEL?.trim() || DEFAULT_GROQ_CHAT_MODEL;
 
   const result = streamText({
-    model: groq("llama-3.1-8b-instant"),
+    model: groq(model),
     system,
     messages: convertToModelMessages(messages),
     temperature: 0.35,

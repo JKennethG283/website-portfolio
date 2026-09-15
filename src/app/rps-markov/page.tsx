@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { RpsMarkovGame } from "@/ui/rps/RpsMarkovGame";
+import { RpsMarkovGame } from "@/features/rps/RpsMarkovGame";
 
 export default function RpsMarkovPage() {
   return (

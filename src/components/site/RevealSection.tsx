@@ -5,7 +5,6 @@ import {
   type ReactNode,
   useEffect,
   useRef,
-  useState,
 } from "react";
 
 type RevealSectionProps = ComponentPropsWithoutRef<"section"> & {
@@ -18,21 +17,23 @@ export function RevealSection({
   ...rest
 }: RevealSectionProps) {
   const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      queueMicrotask(() => setVisible(true));
-      return;
-    }
+    if (mq.matches) return;
+    // Content is visible before hydration and if JavaScript is unavailable.
+    if (el.getBoundingClientRect().top > window.innerHeight)
+      el.classList.add("will-reveal");
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        if (entry.isIntersecting) {
+          el.classList.add("is-revealed");
+          io.unobserve(el);
+        }
       },
       { threshold: 0.08, rootMargin: "0px 0px -28px 0px" },
     );
@@ -44,7 +45,7 @@ export function RevealSection({
     <section
       ref={ref}
       {...rest}
-      className={`reveal-section${visible ? " is-revealed" : ""}${className ? ` ${className}` : ""}`}
+      className={`reveal-section${className ? ` ${className}` : ""}`}
     >
       {children}
     </section>

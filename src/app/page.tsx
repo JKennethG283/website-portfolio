@@ -1,362 +1,525 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { SiteHeader } from "@/ui/site/SiteHeader";
-import { ProjectCarousel } from "@/ui/site/ProjectCarousel";
-import { RevealSection } from "@/ui/site/RevealSection";
-import { PlaygroundCards } from "@/ui/site/PlaygroundCards";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { RevealSection } from "@/components/site/RevealSection";
+import { ProjectStory } from "@/components/site/ProjectStory";
+import { ScrollAtmosphere } from "@/components/site/ScrollAtmosphere";
 
-const year = new Date().getFullYear();
+import {
+  featuredProjects,
+  supportingProjects,
+  earlierProjects,
+} from "@/data/portfolio";
 
 export default function Home() {
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <ScrollAtmosphere />
       <SiteHeader />
-      <main className="flex-1">
-        <section className="hero section" id="home">
-          <div className="container">
-            <div className="hero-simple">
-              <p className="eyebrow">Bachelor of Artificial Intelligence · UTS</p>
-              <h1>
-                Hi, I am <span>Jonathan Kenneth Gunawan</span>. I build AI systems for
-                markets, language, and decision support.
-              </h1>
-              <p className="hero-description">
-                I work across full-stack AI products, machine learning,
-                time-series forecasting, sentiment analysis, and LLM/RAG—turning
-                messy data into models and pipelines you can evaluate and ship.
+      <main id="main-content" className="landscape-portfolio">
+        <section
+          className="landscape-hero"
+          id="home"
+          aria-labelledby="hero-title"
+        >
+          <div className="hero-landscape" aria-hidden="true">
+            <Image
+              src="/images/landscapes/alpine-night.jpg"
+              alt=""
+              fill
+              preload
+              sizes="(max-width: 700px) 1400px, 100vw"
+              className="hero-landscape-image"
+            />
+          </div>
+          <div className="hero-wash" />
+          <div className="wide-container hero-layout">
+            <div className="hero-intro">
+              <span className="signal-dot" /> AI PRODUCT DEVELOPER{" "}
+              <span className="hero-location">SYDNEY, AU</span>
+            </div>
+            <h1 id="hero-title">
+              Finding signal.
+              <br />
+              <span>Building what’s next.</span>
+            </h1>
+            <div className="hero-bottom-copy">
+              <p>
+                I’m Jonathan Kenneth Gunawan.
+                <br />I build AI products across workflows, markets, and mobile.
+                <br className="desktop-break" /> Currently an intern at
+                Gradstack and an AI student at UTS.
               </p>
-              <ul className="hero-meta" aria-label="Focus areas">
-                <li>UTS · BSc AI</li>
-                <li>Forecasting &amp; markets</li>
-                <li>LLM / RAG</li>
-              </ul>
-              <div className="hero-actions">
-                <a className="button primary" href="#projects">
-                  View projects
-                </a>
-                <a className="button secondary" href="#contact">
-                  Contact me
-                </a>
-              </div>
+              <a className="pill-link pill-link--light" href="#projects">
+                Explore my work <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className="hero-baseline">
+              <a href="#projects" className="scroll-cue">
+                <span aria-hidden="true">↓</span> SCROLL TO EXPLORE
+              </a>
+              <span>ARTIFICIAL INTELLIGENCE. HUMAN CURIOSITY.</span>
             </div>
           </div>
         </section>
 
-        <RevealSection className="section" id="about">
-          <div className="container split-section about-split">
-            <div className="about-photo-column">
+        <div className="focus-strip" aria-label="Focus areas">
+          <div className="wide-container">
+            <span>AI products & agents</span>
+            <i aria-hidden="true">✳</i>
+            <span>Machine learning</span>
+            <i aria-hidden="true">✳</i>
+            <span>Voice & mobile</span>
+            <i aria-hidden="true">✳</i>
+            <span>Full-stack development</span>
+          </div>
+        </div>
+
+        <RevealSection
+          className="experience-section wide-container"
+          id="experience"
+          aria-labelledby="experience-title"
+        >
+          <div className="experience-intro">
+            <p className="micro-label">CURRENTLY BUILDING WITH</p>
+            <h2 id="experience-title">
+              Gradstack<span>®</span>
+            </h2>
+            <p className="experience-dates">
+              Intern · <time dateTime="2026-07">July 2026</time>–present
+            </p>
+            <span className="experience-status">
+              <span className="signal-dot" /> Sydney · AI & software development
+            </span>
+          </div>
+          <div className="experience-detail">
+            <h3>Turning learning and assessment into usable software.</h3>
+            <p>
+              I contribute to Gradstack’s AI fluency assessment and learning
+              platform as part of the engineering team.
+            </p>
+            <ul>
+              <li>
+                Built candidate-facing assessment and results experiences,
+                including downloadable result summaries.
+              </li>
+              <li>
+                Worked on searchable learning catalogues and interfaces that
+                help learners find a starting point.
+              </li>
+              <li>
+                Contributed to the data models behind learning progress and
+                achievements.
+              </li>
+            </ul>
+            <p className="experience-note">
+              Team contributions · Public overview
+            </p>
+          </div>
+        </RevealSection>
+
+        <section
+          className="work-section wide-container"
+          id="projects"
+          aria-labelledby="work-title"
+        >
+          <RevealSection className="work-heading">
+            <div>
+              <p className="micro-label">SELECTED WORK</p>
+              <h2 id="work-title">
+                Ideas, made <span>real.</span>
+              </h2>
+            </div>
+            <p>
+              From a question to a working system.
+              <br />A few things I’ve been building.
+            </p>
+          </RevealSection>
+          <ProjectStory projects={featuredProjects} />
+          <RevealSection className="project-index">
+            <div className="index-heading">
+              <h3>More ways I build</h3>
+              <span className="micro-label">CONTRIBUTIONS & EXPERIMENTS</span>
+            </div>
+            <div className="supporting-grid">
+              {supportingProjects.map((project) => (
+                <article className="supporting-card" key={project.name}>
+                  <p className="micro-label">{project.category}</p>
+                  <h4>{project.name}</h4>
+                  <p>{project.description}</p>
+                  <ul className="tech-tags" aria-label="Technologies">
+                    {project.tags.map((tag) => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
+                  {project.external ? (
+                    <a
+                      className="text-link"
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.cta}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    <Link className="text-link" href={project.href}>
+                      {project.cta}
+                      <span aria-hidden="true">↗</span>
+                    </Link>
+                  )}
+                </article>
+              ))}
+            </div>
+            <details className="earlier-work">
+              <summary>
+                <span>
+                  Earlier ML work{" "}
+                  <small>Research foundations & coursework</small>
+                </span>
+                <span className="details-toggle" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <div className="index-list">
+                {earlierProjects.map((project) => (
+                  <a
+                    className="index-row"
+                    key={project.repo}
+                    href={`https://github.com/JKennethG283/${project.repo}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="index-field">{project.field}</span>
+                    <div>
+                      <h4>{project.name}</h4>
+                      <p>{project.description}</p>
+                    </div>
+                    <span className="index-status">View repository</span>
+                    <span className="index-arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </details>
+          </RevealSection>
+        </section>
+
+        <RevealSection
+          className="about-landscape"
+          id="about"
+          aria-labelledby="about-title"
+        >
+          <div className="wide-container about-layout">
+            <div className="portrait-wrap">
               <Image
                 src="/images/profile.jpg"
                 alt="Jonathan Kenneth Gunawan"
-                width={360}
-                height={480}
-                className="about-photo"
-                sizes="(max-width: 860px) min(280px, 88vw), 320px"
+                width={600}
+                height={800}
+                sizes="(max-width: 700px) 90vw, 35vw"
+                className="portrait-image"
               />
+              <div className="portrait-caption">
+                <span>THE PERSON BEHIND THE PROJECTS</span>
+                <span>↗</span>
+              </div>
             </div>
-            <div className="about-copy">
-              <p className="section-label">About</p>
-              <h2>Rigorous models, clear evaluation, deployment-minded workflows.</h2>
-              <div className="section-copy">
+            <div className="about-text">
+              <p className="micro-label">A LITTLE ABOUT ME</p>
+              <h2 id="about-title">
+                Curiosity first.
+                <br />
+                <span>Then, code.</span>
+              </h2>
               <p>
-                I am a Bachelor of Artificial Intelligence student at the
-                University of Technology Sydney, focused on financial AI, time-series
-                forecasting, sentiment intelligence, and practical LLM/RAG systems.
-                My latest and largest project is Market Cerdas, a full-stack
-                AI-assisted ASX market research platform.
+                I’m Jonathan, a Bachelor of Artificial Intelligence student at
+                the University of Technology Sydney and an intern at Gradstack
+                since July 2026. I’m interested in what happens when rigorous
+                machine learning meets something people can actually use.
               </p>
               <p>
-                I enjoy full-stack AI work: data collection, feature engineering,
-                classical and deep models, evaluation frameworks, and paths toward
-                production—without losing sight of ethics and responsible use of
-                generative AI.
+                My work spans agent workflows, financial research, voice-first
+                mobile experiences, and learning platforms. I enjoy connecting
+                the model to the interface and the system behind it. I care
+                about clear thinking, reproducible work, and responsible AI.
               </p>
+              <a
+                className="text-link"
+                href="https://www.linkedin.com/in/jonathan-kenneth-gunawan-8149782a3/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                More about my journey <span aria-hidden="true">↗</span>
+              </a>
+              <div className="about-footnote">
+                <span>BASED IN SYDNEY</span>
+                <span>STUDYING AT UTS</span>
               </div>
             </div>
           </div>
         </RevealSection>
 
-        <RevealSection className="section muted" id="skills">
-          <div className="container">
-            <div className="section-heading">
-              <p className="section-label">Skills</p>
-              <h2>Tools and strengths</h2>
-            </div>
-            <div className="skills-grid">
-              <article className="skill-card">
-                <h3>Programming &amp; stack</h3>
-                <p>
-                  Python, TypeScript, SQL, Java, C++, JavaScript, React, Vite,
-                  Node.js, Express, Django, Git and GitHub.
-                </p>
-              </article>
-              <article className="skill-card">
-                <h3>Machine learning &amp; AI</h3>
-                <p>
-                  Deep learning, time-series forecasting, feature engineering,
-                  sentiment analysis, LLM engineering, Gemini-powered chat,
-                  prompt engineering, RAG, hybrid retrieval, embeddings, and
-                  human-in-the-loop systems.
-                </p>
-              </article>
-              <article className="skill-card">
-                <h3>Models &amp; data</h3>
-                <p>
-                  XGBoost, Random Forest, AutoGluon, Chronos, TFT, LSTM, ARIMAX,
-                  VAR; data viz, web scraping, blockchain data, financial
-                  fundamentals scoring, technical-analysis tooling, MLOps basics,
-                  Docker and MLflow (learning).
-                </p>
-              </article>
-              <article className="skill-card">
-                <h3>Product &amp; deployment</h3>
-                <p>
-                  Express APIs, serverless deployment patterns, Vercel cron jobs,
-                  Vercel Blob snapshots, local fallback models, test suites, and
-                  deployment-minded project documentation.
-                </p>
-              </article>
-            </div>
-          </div>
-        </RevealSection>
-
-        <RevealSection className="section" id="playground">
-          <div className="container">
-            <div className="section-heading">
-              <p className="section-label">Playground</p>
-              <h2>Interactive AI demos</h2>
-              <p className="section-subtitle">
-                Try these live demos and see AI in action.
-              </p>
-            </div>
-            <PlaygroundCards />
-          </div>
-        </RevealSection>
-
-        <RevealSection className="section" id="projects">
-          <div className="container">
-            <div className="section-heading">
-              <p className="section-label">Projects</p>
-              <h2>Featured work</h2>
-            </div>
-            <ProjectCarousel>
-              <article className="project-card">
-                <div className="project-preview gradient-three" />
-                <div className="project-content">
-                  <p className="project-meta">Latest &amp; largest · Full-stack AI markets</p>
-                  <h3>Market Cerdas</h3>
-                  <p>
-                    React + Express ASX market research platform with Gemini chat,
-                    snapshot-aware retrieval, News Impact sentiment dashboards,
-                    technical chart analysis, fundamentals scoring, watchlists,
-                    Python worker pipelines, Vercel cron, and Blob storage.
-                  </p>
-                  <a
-                    href="https://stock-website-sigma.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Open the live Market Cerdas website"
-                  >
-                    Open website
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <div className="project-preview gradient-one" />
-                <div className="project-content">
-                  <p className="project-meta">Forecasting · Crypto</p>
-                  <h3>Cryptocurrency forecasting</h3>
-                  <p>
-                    Multivariate forecasting for BTC, ETH, and SOL with OHLCV,
-                    Dune metrics, and FRED—statistical, ML, and transformer baselines
-                    with MAE, RMSE, MAPE, MASE, and R².
-                  </p>
-                  <a
-                    href="https://github.com/JKennethG283/cryptocurrency-time-series-modelling"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View cryptocurrency forecasting repository on GitHub"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <div className="project-preview gradient-two" />
-                <div className="project-content">
-                  <p className="project-meta">NLP · Indonesia markets · WIP</p>
-                  <h3>Stock sentiment pipeline</h3>
-                  <p>
-                    Indonesian financial news mapped to stocks: scraping, hybrid
-                    search and clustering, sentiment scoring, LLM classification, and
-                    RAG-style knowledge use. Work in progress.
-                  </p>
-                  <a
-                    href="https://github.com/JKennethG283/news-sentiment-analysis-indonesian-market"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View stock sentiment pipeline repository on GitHub"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <div className="project-preview gradient-three" />
-                <div className="project-content">
-                  <p className="project-meta">Markets · Flow analysis · WIP</p>
-                  <h3>Broker &amp; flow analysis</h3>
-                  <p>
-                    Broker activity, foreign flows, order books, and retail vs
-                    institutional behaviour in Indonesian equities—with attention
-                    to market microstructure and psychology. Work in progress.
-                  </p>
-                  <a
-                    href="https://github.com/JKennethG283/indonesian-broker-flow"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View broker and flow analysis work on GitHub"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <div className="project-preview gradient-one" />
-                <div className="project-content">
-                  <p className="project-meta">Tabular ML · Forecasting</p>
-                  <h3>Weather prediction</h3>
-                  <p>
-                    Leakage-safe RainTomorrow classification with Pipeline and
-                    ColumnTransformer, benchmarking multiple models and reaching
-                    0.86 test accuracy with a Random Forest baseline.
-                  </p>
-                  <a
-                    href="https://github.com/JKennethG283/weather-prediction"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View weather prediction repository on GitHub"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <div className="project-preview gradient-two" />
-                <div className="project-content">
-                  <p className="project-meta">Computer Vision · MRI</p>
-                  <h3>Brain tumor classification</h3>
-                  <p>
-                    Multi-class MRI tumor classification using handcrafted image
-                    features (LBP + HOG) with SVM, achieving 81.36% baseline test
-                    accuracy in a reproducible training and inference workflow.
-                  </p>
-                  <a
-                    href="https://github.com/JKennethG283/brain-tumor-image-classification"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View brain tumor classification repository on GitHub"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <div className="project-preview gradient-three" />
-                <div className="project-content">
-                  <p className="project-meta">Object Detection · Dermatology</p>
-                  <h3>Skin disease object detection</h3>
-                  <p>
-                    Ultralytics YOLO pipeline for skin lesion detection with
-                    config-driven training, evaluation, and inference; baseline run
-                    reached mAP@50 of 0.696 and mAP@50-95 of 0.418.
-                  </p>
-                  <a
-                    href="https://github.com/JKennethG283/skin-disease-object-detection"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View skin disease object detection repository on GitHub"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </article>
-            </ProjectCarousel>
-          </div>
-        </RevealSection>
-
-        <RevealSection className="section muted" id="experience">
-          <div className="container">
-            <div className="section-heading">
-              <p className="section-label">Experience</p>
-              <h2>Path &amp; focus</h2>
-            </div>
-            <div className="timeline">
-              <article className="timeline-item">
-                <div>
-                  <p className="timeline-date">Present</p>
-                  <h3>Bachelor of Artificial Intelligence, UTS</h3>
-                </div>
-                <p>
-                  Coursework and projects spanning ML engineering, financial AI,
-                  forecasting, NLP, ethics, Indigenous Data Sovereignty, CARE
-                  principles, and responsible governance of generative AI.
-                </p>
-              </article>
-              <article className="timeline-item">
-                <div>
-                  <p className="timeline-date">Ongoing</p>
-                  <h3>Research &amp; build interests</h3>
-                </div>
-                <p>
-                  LangChain / LangGraph, vector databases, fine-tuning, MLOps, and
-                  cloud AI (AWS/GCP interest)—always with reproducible repos and
-                  clear documentation.
-                </p>
-              </article>
-            </div>
-          </div>
-        </RevealSection>
-
-        <RevealSection className="section contact" id="contact">
-          <div className="container contact-card">
+        <RevealSection
+          className="toolkit-section wide-container"
+          id="skills"
+          aria-labelledby="skills-title"
+        >
+          <div className="section-intro">
             <div>
-              <p className="section-label">Contact</p>
-              <h2>Let&apos;s build something thoughtful.</h2>
+              <p className="micro-label">MY TOOLKIT</p>
+              <h2 id="skills-title">
+                Across the <span>whole stack.</span>
+              </h2>
+            </div>
+            <p>
+              The tools change. The approach stays:
+              <br />
+              understand, experiment, evaluate, build.
+            </p>
+          </div>
+          <div className="capability-grid">
+            <article>
+              <span className="capability-icon" aria-hidden="true">
+                ⌘
+              </span>
+              <h3>Build the product</h3>
+              <p>Interfaces and APIs that make the model useful.</p>
+              <ul className="tech-tags">
+                <li>TypeScript</li>
+                <li>React</li>
+                <li>Next.js</li>
+                <li>React Native / Expo</li>
+                <li>Node.js</li>
+                <li>FastAPI</li>
+                <li>Express</li>
+                <li>Python</li>
+                <li>SQL</li>
+              </ul>
+            </article>
+            <article>
+              <span className="capability-icon" aria-hidden="true">
+                ⤳
+              </span>
+              <h3>Find the pattern</h3>
               <p>
-                Add your public email, LinkedIn, and GitHub below. This site also
-                includes a portfolio assistant you can open from the chat button.
+                Models built around the problem and measured against a baseline.
+              </p>
+              <ul className="tech-tags">
+                <li>XGBoost</li>
+                <li>AutoGluon</li>
+                <li>Chronos</li>
+                <li>LSTM</li>
+                <li>Time series</li>
+              </ul>
+            </article>
+            <article>
+              <span className="capability-icon" aria-hidden="true">
+                ✳
+              </span>
+              <h3>Connect the context</h3>
+              <p>Language systems grounded in the information that matters.</p>
+              <ul className="tech-tags">
+                <li>LLMs</li>
+                <li>LangGraph</li>
+                <li>RAG</li>
+                <li>Embeddings</li>
+                <li>Hybrid search</li>
+                <li>Sentiment analysis</li>
+              </ul>
+            </article>
+            <article>
+              <span className="capability-icon" aria-hidden="true">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                >
+                  <ellipse cx="12" cy="5" rx="8" ry="3" />
+                  <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" />
+                </svg>
+              </span>
+              <h3>Data &amp; infrastructure</h3>
+              <p>
+                Data storage and background jobs that keep products running.
+              </p>
+              <ul className="tech-tags">
+                <li>Supabase</li>
+                <li>PostgreSQL</li>
+                <li>SQLite</li>
+                <li>SQLAlchemy</li>
+                <li>Redis</li>
+                <li>Celery</li>
+              </ul>
+            </article>
+          </div>
+          <div className="learning-note">
+            <span className="signal-dot" />
+            <p>
+              Always exploring{" "}
+              <span>
+                — evaluation, fine-tuning, and MLOps. Building with responsible
+                AI and reproducibility in mind.
+              </span>
+            </p>
+          </div>
+        </RevealSection>
+
+        <RevealSection
+          className="lab-section"
+          id="playground"
+          aria-labelledby="lab-title"
+        >
+          <div className="wide-container">
+            <div className="section-intro">
+              <div>
+                <p className="micro-label">THE PLAYGROUND</p>
+                <h2 id="lab-title">
+                  Less theory.
+                  <br />
+                  <span>More “try this.”</span>
+                </h2>
+              </div>
+              <p>
+                A couple of small experiments.
+                <br />
+                An invitation to play with the possibilities.
               </p>
             </div>
-            <div className="contact-links">
-              <a href="mailto:jonathan.kenneth.gunawan@gmail.com">
-                jonathan.kenneth.gunawan@gmail.com
-              </a>
-              <a
-                href="https://www.linkedin.com/in/jonathan-kenneth-gunawan-8149782a3/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/JKennethG283/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
+            <div className="experiment-grid">
+              <Link href="/object-detection" className="experiment-card">
+                <div className="experiment-preview">
+                  <Image
+                    src="/images/Hand_Demo.png"
+                    alt="Hand landmark tracking demonstration"
+                    fill
+                    sizes="(max-width: 700px) 100vw, 50vw"
+                  />
+                  <span className="experiment-badge">
+                    <span className="signal-dot" /> INTERACTIVE DEMO
+                  </span>
+                </div>
+                <div className="experiment-copy">
+                  <div>
+                    <p className="micro-label">COMPUTER VISION</p>
+                    <h3>A show of hands.</h3>
+                    <p>
+                      Real-time hand tracking. Your camera, a little AI, and all
+                      ten fingers.
+                    </p>
+                  </div>
+                  <span className="circle-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </div>
+                <div className="experiment-footer">
+                  <span>Try hand tracking</span>
+                  <span>Camera required</span>
+                </div>
+              </Link>
+              <Link href="/rps-markov" className="experiment-card">
+                <div className="experiment-preview">
+                  <Image
+                    src="/images/RPS_Demo.png"
+                    alt="Rock paper scissors game against an adaptive AI"
+                    fill
+                    sizes="(max-width: 700px) 100vw, 50vw"
+                  />
+                  <span className="experiment-badge">
+                    <span className="signal-dot" /> INTERACTIVE DEMO
+                  </span>
+                </div>
+                <div className="experiment-copy">
+                  <div>
+                    <p className="micro-label">ADAPTIVE MACHINE LEARNING</p>
+                    <h3>Your next move?</h3>
+                    <p>
+                      Rock, paper, scissors—with an opponent that learns your
+                      patterns.
+                    </p>
+                  </div>
+                  <span className="circle-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </div>
+                <div className="experiment-footer">
+                  <span>Challenge the AI</span>
+                  <span>No setup needed</span>
+                </div>
+              </Link>
             </div>
           </div>
         </RevealSection>
-      </main>
 
-      <footer className="site-footer">
-        <div className="container footer-content">
-          <p>
-            &copy; {year} Jonathan Kenneth. All rights reserved.
-          </p>
-          <a href="#home">Back to top</a>
+        <section
+          className="contact-landscape"
+          id="contact"
+          aria-labelledby="contact-title"
+        >
+          <Image
+            src="/images/landscapes/mountain-sky.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="contact-landscape-image"
+          />
+          <div className="contact-shade" />
+          <RevealSection className="wide-container contact-inner">
+            <p className="micro-label">
+              THE NEXT GOOD IDEA STARTS WITH A CONVERSATION
+            </p>
+            <h2 id="contact-title">
+              Let’s build
+              <br />
+              <span>something thoughtful.</span>
+            </h2>
+            <a
+              className="pill-link pill-link--light"
+              href="mailto:jonathan.kenneth.gunawan@gmail.com"
+            >
+              Say hello <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className="contact-email"
+              href="mailto:jonathan.kenneth.gunawan@gmail.com"
+            >
+              jonathan.kenneth.gunawan@gmail.com
+            </a>
+          </RevealSection>
+        </section>
+      </main>
+      <footer className="landscape-footer">
+        <div className="wide-container">
+          <a className="footer-name" href="#home">
+            Jonathan Kenneth<span>AI developer. Always learning.</span>
+          </a>
+          <div className="footer-socials">
+            <a
+              href="https://github.com/JKennethG283/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://www.linkedin.com/in/jonathan-kenneth-gunawan-8149782a3/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn ↗
+            </a>
+            <a href="#home">Back to top ↑</a>
+          </div>
+          <p>© {new Date().getFullYear()} Jonathan Kenneth Gunawan</p>
+          <span className="footer-note">BUILT WITH INTENTION, IN SYDNEY.</span>
         </div>
       </footer>
     </>

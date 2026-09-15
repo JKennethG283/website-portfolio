@@ -10,7 +10,7 @@ import {
   roundResult,
   updateModel,
   parseModel,
-} from "@/lib/rps/markov";
+} from "./markov";
 
 type RoundRecord = {
   userMove: Move;

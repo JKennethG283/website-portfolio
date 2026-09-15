@@ -111,6 +111,7 @@ export function JonathanChatbot() {
     () => false,
   );
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
   const messagesScrollRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<WebSpeechRecognition | null>(null);
 
@@ -216,7 +217,28 @@ export function JonathanChatbot() {
   useEffect(() => {
     if (open) {
       inputRef.current?.focus();
-      return;
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") setOpen(false);
+        if (event.key !== "Tab") return;
+        const controls = panelRef.current?.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), input:not(:disabled), a[href], [tabindex="0"]',
+        );
+        const first = controls?.[0];
+        const last = controls?.[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first?.focus();
+        }
+      };
+      document.addEventListener("keydown", onKeyDown);
+      return () => {
+        document.body.style.overflow = previousOverflow;
+        document.removeEventListener("keydown", onKeyDown);
+        document.querySelector<HTMLButtonElement>(".assistant-launcher")?.focus();
+      };
     }
     stopRecognition();
     queueMicrotask(() => {
@@ -263,19 +285,25 @@ export function JonathanChatbot() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border border-[#dce4ef] bg-[#0d6efd] px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-[#0b5ed7]"
+          className="assistant-launcher"
+          aria-label="Ask about Jonathan"
           aria-expanded={false}
           aria-controls={panelId}
         >
-          Ask about Jonathan
+          <span className="assistant-launcher-icon" aria-hidden="true">✳</span>
+          <span className="assistant-launcher-label">Ask about Jonathan</span>
         </button>
       ) : null}
 
       <aside
+        ref={panelRef}
         id={panelId}
+        role="dialog"
+        aria-modal={open ? true : undefined}
         aria-hidden={!open}
+        inert={!open}
         aria-labelledby={titleId}
-        className={`fixed inset-y-0 right-0 z-40 flex w-full max-w-md flex-col border-l border-[#dce4ef] bg-white shadow-xl transition-transform duration-300 ease-out ${
+        className={`fixed inset-y-0 right-0 z-[70] flex w-full max-w-md flex-col border-l border-[#dce4ef] bg-white shadow-xl transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full pointer-events-none"
         }`}
       >
@@ -308,8 +336,8 @@ export function JonathanChatbot() {
           >
             {messages.length === 0 && (
               <p className="text-[#3d4a63]">
-                Ask about Jonathan&apos;s studies at UTS, projects (crypto
-                forecasting, Indonesian markets), skills, or career interests.
+                Ask about Jonathan&apos;s Gradstack internship, Flowstudio,
+                Market Cerdas, Haven AI, or his studies at UTS.
                 {sttSupported
                   ? " Use the microphone button to dictate—your message sends automatically when you finish speaking."
                   : ""}
@@ -478,7 +506,7 @@ export function JonathanChatbot() {
         <button
           type="button"
           aria-label="Dismiss chat overlay"
-          className="fixed inset-0 z-30 bg-[#0c1222]/20"
+          className="fixed inset-0 z-[60] bg-[#0c1222]/40"
           onClick={() => setOpen(false)}
         />
       ) : null}

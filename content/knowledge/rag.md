@@ -2,11 +2,11 @@
 
 ## Overview
 
-Jonathan Kenneth is a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS). His interests center on machine learning, financial AI systems, time-series forecasting, sentiment analysis, full-stack AI products, and applications of large language models and RAG. He focuses on building end-to-end AI systems for real-world financial and analytical problems, including AI-assisted stock research, cryptocurrency forecasting, Indonesian stock-market analysis, blockchain data integration, and AI-driven sentiment pipelines.
+Jonathan Kenneth Gunawan is an AI product developer, a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS), and an intern at Gradstack. He started the Gradstack internship at the beginning of July 2026 and it is ongoing. His work spans AI workflow tools, financial research, voice-first mobile experiences, learning platforms, and machine learning research.
 
 ## Elevator pitch
 
-Jonathan Kenneth Gunawan is a production-minded Bachelor of Artificial Intelligence student at UTS in Sydney, nearing graduation. He builds reproducible full-stack AI market platforms, forecasting, NLP, broker-flow, and computer vision systems—with clear evaluation, containers/pipelines in mind, and public GitHub portfolios. Indonesian, age 22, fluent in English and Indonesian and moderate in Chinese; actively seeking internships, graduate programs, or full-time roles worldwide.
+Jonathan Kenneth Gunawan builds AI products across interfaces, APIs, models, and data pipelines. He is based in Sydney, studies Artificial Intelligence at UTS, and has been an intern at Gradstack since July 2026. His portfolio combines personal product development, explicit contributions to team projects, and reproducible ML research.
 
 ## How he builds systems
 
@@ -14,7 +14,7 @@ He enjoys end-to-end systems that cover: data collection pipelines, feature engi
 
 ## Technical skills — programming
 
-Python, TypeScript, SQL, Java, C++, JavaScript, React, Vite, Node.js, Express, Django, Git and GitHub.
+Python, TypeScript, SQL, Java, C++, JavaScript, React, Next.js, React Native, Expo, Vite, Node.js, Express, FastAPI, Django, Git and GitHub.
 
 ## Technical skills — machine learning and AI
 
@@ -26,11 +26,13 @@ XGBoost, Random Forest, AutoGluon, Chronos, Temporal Fusion Transformer, LSTM, A
 
 ## Data and infrastructure
 
+The portfolio toolkit includes Supabase, PostgreSQL, SQLite, SQLAlchemy, Redis, and Celery. These reflect data storage and background-processing work across his recent projects. Serendip-TG uses Supabase-hosted PostgreSQL, SQLAlchemy, Redis, and Celery; Flowstudio uses PostgreSQL and SQLAlchemy; Haven uses SQLite for device-local journal storage. Describe his specific contributions to team projects without implying ownership of their entire infrastructure.
+
 Data analysis, data visualization, web scraping, blockchain data processing, technical-analysis tooling, fundamentals scoring, Vercel serverless deployment patterns, scheduled refresh jobs, Blob-backed snapshots, MLOps concepts, Docker (learning), MLflow (learning), and cloud AI systems with interest in AWS and GCP.
 
 ## Libraries and tooling (hands-on)
 
-Common Python stack: pandas, NumPy, scikit-learn; Jupyter notebooks for exploration alongside packaged `src/` layouts, CLIs, and worker scripts where repos allow. Classical stats/time series where relevant (e.g. statsmodels-style workflows). Deep learning and CV: PyTorch-oriented workflows and Ultralytics YOLO for detection projects. Full-stack TypeScript: React, Vite, Express, API routes, local fallback models, charting, and test suites. Web portfolio: Next.js, React, TypeScript, Tailwind CSS v4. Assistant on this site: Groq LLM plus optional Hugging Face embeddings; RAG retrieval over `content/knowledge/rag.md`. Interests: LangChain / LangGraph, vector databases, CI (e.g. GitHub Actions) as used in repositories.
+Python: pandas, NumPy, scikit-learn, PyTorch-oriented workflows, Ultralytics YOLO, and FastAPI. AI products: LangGraph, LLM integration, embeddings, RAG, and hybrid retrieval. Web: React, Next.js, TypeScript, Express, and Vite. Mobile: React Native, Expo, and SQLite. Team contributions include background tasks with Celery. The portfolio uses Next.js, React, TypeScript, and Tailwind CSS; its assistant uses Groq with retrieval over the published profile.
 
 ## Quantified results snapshot (from published repos)
 
@@ -40,29 +42,21 @@ Figures below come from README-style summaries in his GitHub projects and may re
 - **Brain tumor MRI (`brain-tumor-image-classification`):** Handcrafted features (LBP + HOG) + SVM; baseline **test accuracy ~81.36%**; strong **F1 on Pituitary (~0.96)** and **No Tumor (~0.90)**; **Meningioma recall ~0.50** noted as a key improvement area.
 - **Skin disease detection (`skin-disease-object-detection`):** YOLO workflow; baseline snapshot **Box mAP@50 ~0.696**, **mAP@50-95 ~0.418**; precision/recall snapshot **~0.663 / 0.666** (epoch/experiment-specific).
 - **Cryptocurrency forecasting (`cryptocurrency-time-series-modelling`):** Multiple models and metrics (**MAE, RMSE, MAPE, MASE, R²**) as described in the major project section below.
-- **Market Cerdas (`stock-website`):** Latest and largest project; a live full-stack React + Express ASX market research platform with Gemini chat, sentiment snapshots, technical chart analysis, fundamentals scoring, watchlists, Python worker pipelines, serverless APIs, Vercel cron, and Vercel Blob storage. The code repository is private; visitors should use the live website at https://stock-website-sigma.vercel.app/.
+- **Market Cerdas:** Public ASX research prototype with private application source. No quantitative product-impact or investment-performance claim is made.
 
 ## Major project — Market Cerdas (`stock-website`)
 
-**Status:** Jonathan's latest and biggest project.
+**Role:** Full-stack AI development.
 
-**Live website:** https://stock-website-sigma.vercel.app/
+**Status:** Public ASX research prototype; application source is private. It is a featured project, not described as the latest or largest.
 
-**Repository access:** The GitHub repository `JKennethG283/stock-website` is private, so public visitors should be directed to the live website instead of GitHub.
+**Live product:** https://stock-website-sigma.vercel.app/
 
-**Focus:** AI-assisted ASX market research through a chat-first interface, News Impact sentiment dashboards, technical chart analysis, fundamentals grading, live quote lookups, generated news-event views, and local watchlists.
+**Public documentation:** https://github.com/JKennethG283/market-cerdas
 
-**Frontend:** Vite + React + TypeScript routes for home chat, market sentiment, fundamentals, broker-flow planning, sectors, stocks, generated news events, and watchlists. UI includes Lightweight Charts price views, support/resistance auto-analysis, classic pattern labels, drawing tools, Recharts dashboards, and chart-to-AI handoff.
+**Portfolio overview:** /work/market-cerdas
 
-**Backend:** Express API layer serving chat, sentiment snapshot, stock quote, stock history, stock fundamentals, and fundamentals dashboard endpoints. The production build serves static frontend files and keeps the same API surface from `dist/server.js`.
-
-**LLM and retrieval:** Gemini-powered market chat with snapshot-aware hybrid retrieval, citations, technical/fundamental context injection, optional Gemini embedding similarity, cached embeddings, and markdown/chat helper tests.
-
-**Sentiment worker:** Python News Impact worker with fixture, live ASX ComNews, free-news, and golden-case modes. It turns ASX/macro/free-news sources into scored sentiment snapshots, event histories, factor candidates, source summaries, and stock-level context for the app and chatbot.
-
-**Deployment:** Vercel-supported serverless APIs, daily sentiment refresh cron, Vercel Blob snapshot reads/writes, bundled demo fallback snapshots for missing production data, protected cron routes via `CRON_SECRET`, and environment-based configuration from `.env.example`.
-
-**Testing and professional practice:** TypeScript tests cover API behavior, historical prices, fundamentals scoring, price charts, chart drawings, support/resistance analysis, navigation search, technical strategy, sentiment views, chat context, retrieval, Gemini chat helpers, and markdown. Python tests cover the sentiment worker pipeline.
+Market Cerdas combines AI-assisted stock research, news sentiment, technical charts, company fundamentals, and watchlists. Jonathan worked across React/TypeScript interfaces, Express APIs, Gemini-assisted retrieval, and Python data pipelines. The public product supports ASX research. Indonesian stock prediction is a development direction, not a completed production capability. Public product scores and snapshots are not investment-performance claims.
 
 ## Major project — cryptocurrency forecasting
 
@@ -90,7 +84,7 @@ Figures below come from README-style summaries in his GitHub projects and may re
 
 ## Broker flow and Indonesian market analysis
 
-Focus on how broker activity and foreign flows relate to Indonesian stock movements. Areas explored include broker transaction analysis, foreign buy and sell tracking, order-book behaviour, retail versus institutional behaviour, “bandar” flow analysis, Indonesian stock market psychology.
+Broker-flow and Indonesian market analysis are research interests and potential inputs to the Market Cerdas development direction. They are not currently presented as a separate completed product.
 
 ## AI and computer vision
 
@@ -98,19 +92,30 @@ Experience with image detection and object detection, AI model deployment concep
 
 ## GitHub profile snapshot
 
-GitHub username: `JKennethG283`.
+GitHub: https://github.com/JKennethG283
 
-Public profile summary: 7 public repositories, account created in 2024, active updates through 2026. Market Cerdas / `stock-website` is a private codebase with a live public deployment.
+The portfolio includes both public research repositories and private-source products. Public code links are shown only for the established research projects. Market Cerdas offers a live product and a public documentation repository. Flowstudio, Haven AI, Serendip-TG, and Server-driven UI are presented through public product or contribution descriptions, not private source links.
 
-Repository themes include:
-- Full-stack AI market research (Market Cerdas, live at https://stock-website-sigma.vercel.app/; private repo `stock-website`)
-- Time-series and tabular ML (`cryptocurrency-time-series-modelling`, `weather-prediction`)
-- NLP for financial sentiment (`news-sentiment-analysis-indonesian-market`)
-- Computer vision (`brain-tumor-image-classification`, `skin-disease-object-detection`)
-- Market microstructure analysis (`indonesian-broker-flow`)
-- Portfolio website engineering (`website-portfolio`)
 
-Project documentation style on GitHub emphasizes practical, production-oriented structure with reproducibility, clear README guidance, and script/CLI workflows.
+## Experience — Gradstack internship
+
+Jonathan is an intern at Gradstack, from the beginning of July 2026 to the present. Public display: Intern · July 2026–present. His contributions to the team’s AI fluency assessment and learning platform include candidate assessment and results interfaces, downloadable result summaries, learning catalogue search and browsing, and data models for learning progress and achievements. These are team contributions. Internal source code, assessment content, and detailed scoring rules are not part of the public portfolio. No more specific contractual title has been supplied.
+
+## Featured project — Flowstudio
+
+Role: product design and full-stack development. Status: working local AI workflow platform under active development; private source. Flowstudio supports visual workflow authoring, reusable agents and tools, a dependency map, durable workflow runs, and inspection of step outputs and artifacts. It connects the authoring experience with understandable execution feedback. The portfolio shows a product overview at /work/flowstudio. It is not presented as a publicly hosted service, an open-source repository, or a product with verified user/adoption metrics.
+
+## Featured project — Haven AI
+
+Role: mobile and API development as a team contributor. Haven AI is an in-development voice-first journaling product. Jonathan’s contributions span the Expo/React Native mobile app, transcription integration, editable journal drafts, device-local journal storage, supporting API work, and development-build workflows. The flow is recording, transcript review, optional AI assistance, then an editable entry saved by the person. It is not a released app-store product or a medical service. Portfolio images are clean web previews without personal journal content. Native recording and on-device transcription require a supported device and native build. Product overview: /work/haven-ai. Source is private.
+
+## Supporting project — Serendip-TG contributions
+
+Serendip-TG is a team-built Telegram Bot and Mini App platform. Jonathan contributed AI-generated story quizzes, asynchronous UI theme generation, admin story draft editing, status polling, and worker/database reliability improvements. Do not credit him with building the entire matching platform. The public contribution overview is at /work/serendip-tg; private code and user profiles are not shared.
+
+## Supporting project — Server-driven UI / Astrana
+
+A profile-driven interface prototype whose palette, typography, and avatar presentation come from structured data. Jonathan’s work includes interface theming, a FastAPI service, and a LangGraph-based generation pipeline. The public demo is https://server-driven-ui-fawn.vercel.app/. It is a private-source prototype, not a publicly released source repository.
 
 ## Personal Q&A (assistant context)
 
@@ -183,12 +188,11 @@ He is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and 
 
 ## Repository status (portfolio-ready vs work in progress)
 
-- **Documented / portfolio showcases:** Market Cerdas / `stock-website` (latest and biggest project, live website public but GitHub repo private), `weather-prediction`, `brain-tumor-image-classification`, `skin-disease-object-detection`, `cryptocurrency-time-series-modelling`, `website-portfolio` (and this live portfolio deployment).
-- **Active or evolving (WIP):** `news-sentiment-analysis-indonesian-market`, `indonesian-broker-flow`—features and evaluation may be incomplete; treat claims as directional unless the README states otherwise.
+Featured products: Flowstudio (working local platform; private source), Market Cerdas (public ASX research prototype; private application source), and Haven AI (in-development team project; private source). Supporting work: Serendip-TG contributions, the Server-driven UI / Astrana demo, and cryptocurrency forecasting research. Earlier work: Indonesian news sentiment, weather prediction, brain tumor classification, and skin disease detection. No app-store release, paying users, deployment scale, or performance uplift is claimed without published evidence.
 
 ## Collaboration and leadership context
 
-Most **public GitHub** work is **individual** portfolio and coursework-driven; university projects may include **team components**. He values peer review, clear handoffs, and psychological safety in professional settings and is **actively improving** communication and teamwork through group coursework, presenting results, and soliciting feedback on repositories.
+Jonathan has been an intern at Gradstack since July 2026, contributing as part of the engineering team. Haven AI and Serendip-TG are also team projects: describe his specific contributions rather than claiming he built the entire platform. Personal projects and coursework demonstrate additional independent work. Do not infer a leadership title, sole ownership, or an employment relationship with other organisations.
 
 ## Interests outside technical work / Hobbies
 
@@ -196,9 +200,13 @@ Most **public GitHub** work is **individual** portfolio and coursework-driven; u
 
 ## This website — FAQ for visitors
 
-- **What is this site?** A personal portfolio for Jonathan Kenneth Gunawan: About, Skills, **Playground** (interactive demos), **Featured work** (project carousel with GitHub links), Experience, and Contact.
-- **Playground demos:** **Object detection** finger-counting demo at `/object-detection`; **Rock–Paper–Scissors** vs an adaptive Markov-style opponent at `/rps-markov`.
-- **Portfolio assistant chat:** Uses retrieval-augmented generation over **`content/knowledge/rag.md`** plus an LLM; answers should reflect this published profile. **Time-sensitive** facts (visa rules, job status, grades) may change—visitors should confirm with Jonathan directly.
+The site presents Jonathan Kenneth Gunawan’s Gradstack internship, three featured products (Flowstudio, Market Cerdas, Haven AI), supporting contributions and research, an expandable earlier-ML-work list, About, Skills, Playground, and Contact.
+
+Project stories: /work/flowstudio, /work/market-cerdas, /work/haven-ai, /work/serendip-tg.
+
+Playground: hand tracking at /object-detection and an adaptive Markov-style Rock–Paper–Scissors opponent at /rps-markov.
+
+The assistant answers from this public portfolio profile. It does not have access to private source repositories or private project data.
 
 ## Research and ethics interests
 

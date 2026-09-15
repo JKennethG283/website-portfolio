@@ -23,4 +23,5 @@ This is a Next.js 16 portfolio website using TypeScript, Tailwind CSS v4, and th
 - Tailwind CSS v4 uses `@import "tailwindcss"` in `globals.css` (not `@tailwind` directives). Page styling also uses `src/styles/portfolio.css`.
 - ESLint config is in `eslint.config.mjs` (flat config format, ESLint v9).
 - The project uses the Next.js App Router with the `src/` directory layout. Routes and API handlers live under `src/app/`.
-- **Layout:** `src/ui/` (React UI: site shell, assistant chat), `src/server/` (RAG + assistant prompts used by API routes), `src/data/` (generated `rag-index.json`), `content/knowledge/` (RAG source markdown). Chat uses Groq + optional HF embeddings (env vars).
+- **Layout:** `src/app/` (route entry points and page composition), `src/components/site/` (shared site UI), `src/features/` (assistant, object-detection, and RPS UI with feature-local helpers/styles), `src/server/` (RAG + assistant prompts used by API routes), `src/data/` (generated `rag-index.json`), `content/knowledge/` (RAG source markdown). Chat uses Groq + optional HF embeddings (env vars).
+- Keep feature-specific logic beside its UI; use relative imports within a feature and `@/` imports across folders. Import modules directly without barrel files. Browser components must not import `src/server/` modules.
