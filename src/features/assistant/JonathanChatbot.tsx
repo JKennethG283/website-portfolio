@@ -1,6 +1,14 @@
 "use client";
 
-import "./chat-panel.css";
+import "./signal.css";
+
+import {
+  AssistantOrb,
+  assistantStateLabels,
+  type AssistantState,
+} from "./AssistantOrb";
+import { RobotMascot } from "./RobotMascot";
+import { AssistantMessage } from "./AssistantMessage";
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
@@ -21,41 +29,6 @@ import {
   type WebSpeechRecognitionErrorEvent,
   type WebSpeechRecognitionEvent,
 } from "./web-speech";
-
-function AssistantAvatar({
-  thinking,
-  className = "",
-}: {
-  thinking?: boolean;
-  className?: string;
-}) {
-  return (
-    <span
-      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e8f1ff] text-[#0d6efd] ring-1 ring-[#dce4ef] ${
-        thinking ? "chat-assistant-avatar--thinking" : ""
-      } ${className}`.trim()}
-      aria-hidden
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
-        <path d="M5 3v4" />
-        <path d="M19 17v4" />
-        <path d="M3 5h4" />
-        <path d="M17 19h4" />
-      </svg>
-    </span>
-  );
-}
 
 function MicIcon({ className }: { className?: string }) {
   return (
@@ -115,13 +88,33 @@ export function JonathanChatbot() {
   const messagesScrollRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<WebSpeechRecognition | null>(null);
 
-  const { messages, sendMessage, status, error } = useChat({
+  const {
+    messages,
+    sendMessage,
+    status,
+    error,
+    stop,
+    regenerate,
+    setMessages,
+    clearError,
+  } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
     }),
   });
 
   const busy = status === "submitted" || status === "streaming";
+  const orbState: AssistantState = listening
+    ? "listening"
+    : status === "submitted"
+      ? "thinking"
+      : status === "streaming"
+        ? "replying"
+        : error
+          ? "error"
+          : inputValue.trim()
+            ? "receiving"
+            : "idle";
 
   useLayoutEffect(() => {
     if (!open) return;
@@ -131,7 +124,8 @@ export function JonathanChatbot() {
       el.scrollTop = el.scrollHeight;
     };
     snapToBottom();
-    requestAnimationFrame(snapToBottom);
+    const frame = requestAnimationFrame(snapToBottom);
+    return () => cancelAnimationFrame(frame);
   }, [open, messages, status, busy, error]);
 
   const stopRecognition = useCallback(() => {
@@ -171,7 +165,9 @@ export function JonathanChatbot() {
     recognition.lang = "en-AU";
 
     recognition.onresult = (ev) => {
-      const t = collectFinalTranscript(ev as unknown as WebSpeechRecognitionEvent);
+      const t = collectFinalTranscript(
+        ev as unknown as WebSpeechRecognitionEvent,
+      );
       if (!t) return;
       setSpeechHint(null);
 
@@ -216,9 +212,25 @@ export function JonathanChatbot() {
 
   useEffect(() => {
     if (open) {
+      const viewport = window.visualViewport;
+      const fitViewport = () => {
+        panelRef.current?.style.setProperty(
+          "--chat-viewport-height",
+          `${viewport?.height ?? window.innerHeight}px`,
+        );
+        panelRef.current?.style.setProperty(
+          "--chat-viewport-top",
+          `${viewport?.offsetTop ?? 0}px`,
+        );
+      };
+      fitViewport();
+      viewport?.addEventListener("resize", fitViewport);
+      viewport?.addEventListener("scroll", fitViewport);
       inputRef.current?.focus();
       const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
+      const content = document.getElementById("site-content");
+      if (content) content.inert = true;
       const onKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape") setOpen(false);
         if (event.key !== "Tab") return;
@@ -228,16 +240,21 @@ export function JonathanChatbot() {
         const first = controls?.[0];
         const last = controls?.[controls.length - 1];
         if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault(); last?.focus();
+          event.preventDefault();
+          last?.focus();
         } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault(); first?.focus();
+          event.preventDefault();
+          first?.focus();
         }
       };
       document.addEventListener("keydown", onKeyDown);
       return () => {
+        viewport?.removeEventListener("resize", fitViewport);
+        viewport?.removeEventListener("scroll", fitViewport);
         document.body.style.overflow = previousOverflow;
+        if (content) content.inert = false;
         document.removeEventListener("keydown", onKeyDown);
-        document.querySelector<HTMLButtonElement>(".assistant-launcher")?.focus();
+        document.querySelector<HTMLButtonElement>(".mascot-button")?.focus();
       };
     }
     stopRecognition();
@@ -279,22 +296,24 @@ export function JonathanChatbot() {
     }
   };
 
+  const ask = (text: string) => {
+    if (!text.trim() || busy) return;
+    if (listening) stopRecognition();
+    void sendMessage({ text: text.trim() });
+    setInputValue("");
+    inputRef.current?.focus();
+  };
+
   return (
     <>
-      {!open ? (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="assistant-launcher"
-          aria-label="Ask about Jonathan"
-          aria-expanded={false}
-          aria-controls={panelId}
-        >
-          <span className="assistant-launcher-icon" aria-hidden="true">✳</span>
-          <span className="assistant-launcher-label">Ask about Jonathan</span>
-        </button>
-      ) : null}
-
+      <RobotMascot open={open} panelId={panelId} onOpen={() => setOpen(true)} />
+      {open && (
+        <div
+          className="assistant-backdrop"
+          aria-hidden="true"
+          onClick={() => setOpen(false)}
+        />
+      )}
       <aside
         ref={panelRef}
         id={panelId}
@@ -303,213 +322,224 @@ export function JonathanChatbot() {
         aria-hidden={!open}
         inert={!open}
         aria-labelledby={titleId}
-        className={`fixed inset-y-0 right-0 z-[70] flex w-full max-w-md flex-col border-l border-[#dce4ef] bg-white shadow-xl transition-transform duration-300 ease-out ${
-          open ? "translate-x-0" : "translate-x-full pointer-events-none"
-        }`}
+        className={`signal-panel${open ? " is-open" : ""}`}
       >
-        <header className="flex items-center justify-between gap-3 border-b border-[#dce4ef] bg-[#f4f7fb] px-4 py-3">
-          <div>
-            <h2
-              id={titleId}
-              className="text-base font-semibold text-[#0c1222]"
+        <header className="signal-panel-header">
+          <div className="signal-identity">
+            <span className="signal-dot" />
+            <span>
+              SIGNAL <span className="signal-identity-divider">/</span>{" "}
+              PORTFOLIO GUIDE
+            </span>
+          </div>
+          <div className="signal-header-actions">
+            {messages.length > 0 && (
+              <button
+                type="button"
+                className="signal-icon-button"
+                disabled={busy}
+                aria-label="Start a new conversation"
+                title="New conversation"
+                onClick={() => {
+                  setMessages([]);
+                  clearError();
+                  setInputValue("");
+                  inputRef.current?.focus();
+                }}
+              >
+                ↺
+              </button>
+            )}
+            <button
+              type="button"
+              className="signal-icon-button"
+              aria-label="Close chat panel"
+              onClick={() => setOpen(false)}
             >
-              Portfolio assistant
+              ×
+            </button>
+          </div>
+        </header>
+        <div
+          className={`signal-presence${messages.length ? " signal-presence--compact" : ""}`}
+        >
+          <AssistantOrb state={orbState} />
+          <div>
+            <h2 id={titleId}>
+              {messages.length
+                ? "A little signal. A little clarity."
+                : "Hello, curious human."}
             </h2>
-            <p className="text-xs text-[#6b7a93]">
-              Answers use public profile context when relevant.
+            <p className="signal-state" role="status">
+              {assistantStateLabels[orbState]}
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="rounded-lg border border-[#dce4ef] bg-white px-3 py-1.5 text-sm font-medium text-[#3d4a63] transition hover:border-[#c5d0e0] hover:bg-[#f4f7fb]"
-            aria-label="Close chat panel"
-          >
-            Close
-          </button>
-        </header>
-
-        <div className="flex min-h-0 flex-1 flex-col gap-3 bg-white">
-          <div
-            ref={messagesScrollRef}
-            className="chat-messages-scroll min-h-0 flex-1 space-y-4 overflow-y-auto overflow-x-hidden px-4 py-3 text-sm"
-          >
-            {messages.length === 0 && (
-              <p className="text-[#3d4a63]">
-                Ask about Jonathan&apos;s Gradstack internship, Flowstudio,
-                Market Cerdas, Haven AI, or his studies at UTS.
-                {sttSupported
-                  ? " Use the microphone button to dictate—your message sends automatically when you finish speaking."
-                  : ""}
+        </div>
+        <div className="signal-conversation" ref={messagesScrollRef}>
+          {messages.length === 0 && (
+            <div className="signal-welcome">
+              <p>
+                I’m Signal, Jonathan’s AI guide.
+                <br />
+                Let’s explore what he’s building.
               </p>
-            )}
-            {messages.map((message, index) => {
-              const isAssistant = message.role === "assistant";
-              const isLast = index === messages.length - 1;
-              const avatarThinking = isAssistant && isLast && busy;
-
-              if (message.role === "user") {
-                return (
-                  <div
-                    key={message.id}
-                    className="flex flex-col items-end gap-1"
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-wide text-[#6b7a93]">
-                      You
-                    </span>
-                    <div
-                      className="chat-bubble-user max-w-[95%] rounded-2xl bg-[#0d6efd] px-3 py-2 leading-relaxed text-white"
-                    >
-                      {message.parts.map((part, i) =>
-                        part.type === "text" ? (
-                          <span key={i} className="whitespace-pre-wrap">
-                            {part.text}
-                          </span>
-                        ) : null,
-                      )}
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <div key={message.id} className="flex gap-2">
-                  <AssistantAvatar thinking={avatarThinking} />
-                  <div className="flex min-w-0 flex-1 flex-col gap-1">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-[#6b7a93]">
-                      Assistant
-                    </span>
-                    <div className="chat-bubble-assistant max-w-[95%] rounded-2xl bg-[#f4f7fb] px-3 py-2 leading-relaxed text-[#0c1222] ring-1 ring-[#dce4ef]">
-                      {message.parts.map((part, i) =>
-                        part.type === "text" ? (
-                          <span key={i} className="whitespace-pre-wrap">
-                            {part.text}
-                          </span>
-                        ) : null,
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-            {busy && messages[messages.length - 1]?.role !== "assistant" ? (
-              <div className="flex items-center gap-2">
-                <AssistantAvatar thinking />
-                <p className="flex items-center gap-0.5 text-xs text-[#6b7a93]">
-                  <span>Thinking</span>
-                  <span className="chat-thinking-dot">.</span>
-                  <span className="chat-thinking-dot">.</span>
-                  <span className="chat-thinking-dot">.</span>
-                </p>
+              <div
+                className="signal-suggestions"
+                aria-label="Suggested questions"
+              >
+                {[
+                  [
+                    "Explore the work",
+                    "What has Jonathan been building recently?",
+                  ],
+                  [
+                    "Behind the code",
+                    "What are Jonathan's strengths and technical skills?",
+                  ],
+                  [
+                    "Meet Jonathan",
+                    "Tell me about Jonathan's journey and his internship at Gradstack.",
+                  ],
+                ].map(([label, prompt]) => (
+                  <button type="button" key={label} onClick={() => ask(prompt)}>
+                    <span>{label}</span>
+                    <span aria-hidden="true">↗</span>
+                  </button>
+                ))}
               </div>
-            ) : null}
-            {error && (
-              <div className="space-y-1 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
-                <p>
-                  Something went wrong. If this persists, the chat service may not
-                  be configured for this deployment.
-                </p>
-                {process.env.NODE_ENV === "development" ? (
-                  <p className="font-mono text-xs opacity-90">
-                    {error.message ||
-                      (typeof error === "string" ? error : String(error))}
-                  </p>
-                ) : null}
-              </div>
-            )}
-          </div>
-
-          <form
-            className="border-t border-[#dce4ef] bg-[#f4f7fb] p-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (listening) stopRecognition();
-              const text = inputValue.trim();
-              if (!text || busy) return;
-              sendMessage({ text });
-              setInputValue("");
-            }}
+              <span className="signal-welcome-note">
+                Projects, experience, and the person behind them.
+              </span>
+            </div>
+          )}
+          <div
+            className="signal-message-list"
+            role="log"
+            aria-label="Conversation"
+            aria-live="polite"
+            aria-busy={busy}
           >
-            <label htmlFor={`${panelId}-input`} className="sr-only">
-              Message
-            </label>
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                id={`${panelId}-input`}
-                name="message"
-                value={inputValue}
-                onChange={(e) => {
-                  setInputValue(e.target.value);
-                  if (speechHint) setSpeechHint(null);
+            {messages.map((message) => (
+              <article
+                key={message.id}
+                className={`signal-message signal-message--${message.role}`}
+              >
+                <span className="signal-message-author">
+                  {message.role === "user" ? "YOU" : "SIGNAL"}
+                </span>
+                <div>
+                  {message.parts.map((part, i) =>
+                    part.type === "text" ? (
+                      message.role === "assistant" ? (
+                        <AssistantMessage key={i} text={part.text} />
+                      ) : (
+                        <span key={i}>{part.text}</span>
+                      )
+                    ) : null,
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+          {status === "submitted" && (
+            <div className="signal-thinking">
+              <AssistantOrb state="thinking" small />
+              <span>Looking through Jonathan’s work…</span>
+            </div>
+          )}
+          {error && (
+            <div className="signal-error" role="alert">
+              <p>
+                I couldn’t connect just now. Your conversation is still here.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  void regenerate();
                 }}
-                placeholder="Ask a question…"
+              >
+                Try again ↗
+              </button>
+              <a href="mailto:jonathan.kenneth.gunawan@gmail.com">
+                Contact Jonathan instead
+              </a>
+            </div>
+          )}
+        </div>
+        <form
+          className="signal-composer"
+          onSubmit={(event) => {
+            event.preventDefault();
+            ask(inputValue);
+          }}
+        >
+          <label htmlFor={`${panelId}-input`} className="sr-only">
+            Message Signal
+          </label>
+          <div className="signal-input-row">
+            <input
+              ref={inputRef}
+              id={`${panelId}-input`}
+              name="message"
+              value={inputValue}
+              onChange={(event) => {
+                setInputValue(event.target.value);
+                if (speechHint) setSpeechHint(null);
+              }}
+              placeholder="What are you curious about?"
+              autoComplete="off"
+            />
+            {sttSupported && (
+              <button
+                type="button"
+                className="signal-mic"
+                onClick={toggleSpeech}
                 disabled={busy}
-                autoComplete="off"
-                className={`min-w-0 flex-1 rounded-lg border border-[#dce4ef] bg-white px-3 py-2 text-sm text-[#0c1222] outline-none ring-[#0d6efd]/30 placeholder:text-[#6b7a93] focus:ring-2 ${
-                  busy ? "chat-input--busy" : ""
-                }`}
-              />
-              {sttSupported ? (
-                <button
-                  type="button"
-                  onClick={toggleSpeech}
-                  disabled={busy}
-                  aria-pressed={listening}
-                  aria-label={
-                    listening ? "Stop voice input" : "Start voice input"
-                  }
-                  title={
-                    listening
-                      ? "Stop listening"
-                      : "Speak your question—it sends when you finish speaking"
-                  }
-                  className={`flex h-[38px] w-[42px] shrink-0 items-center justify-center rounded-lg border text-white transition disabled:opacity-50 ${
-                    listening
-                      ? "border-red-300 bg-red-500 hover:bg-red-600"
-                      : "border-[#93c5fd] bg-[#0d6efd] hover:bg-[#0b5ed7]"
-                  }`}
-                >
-                  <MicIcon />
-                </button>
-              ) : null}
+                aria-pressed={listening}
+                aria-label={
+                  listening ? "Stop voice input" : "Start voice input"
+                }
+                title="Speak your question; it sends when you finish"
+              >
+                <MicIcon />
+              </button>
+            )}
+            {busy ? (
+              <button
+                type="button"
+                className="signal-send"
+                onClick={() => {
+                  void stop();
+                }}
+                aria-label="Stop response"
+              >
+                <span className="signal-stop-square" />
+              </button>
+            ) : (
               <button
                 type="submit"
-                disabled={busy}
-                className="shrink-0 rounded-lg bg-[#0d6efd] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#0b5ed7] disabled:opacity-50"
+                className="signal-send"
+                disabled={!inputValue.trim()}
+                aria-label="Send message"
               >
-                Send
+                ↑
               </button>
-            </div>
-            {speechHint ? (
-              <p
-                className="mt-2 text-xs text-[#b45309]"
-                role="status"
-                aria-live="polite"
-              >
-                {speechHint}
-              </p>
-            ) : listening ? (
-              <p
-                className="mt-2 text-xs text-[#0d6efd]"
-                role="status"
-                aria-live="polite"
-              >
-                Listening… speak now. Your message will send when you stop.
-              </p>
-            ) : null}
-          </form>
-        </div>
+            )}
+          </div>
+          {speechHint ? (
+            <p className="signal-speech-hint" role="status">
+              {speechHint}
+            </p>
+          ) : listening ? (
+            <p className="signal-speech-hint" role="status">
+              Listening… your question sends when you finish.
+            </p>
+          ) : null}
+          <p className="signal-disclaimer">
+            AI guide · Based on Jonathan’s public portfolio · Can make mistakes
+          </p>
+        </form>
       </aside>
-
-      {open ? (
-        <button
-          type="button"
-          aria-label="Dismiss chat overlay"
-          className="fixed inset-0 z-[60] bg-[#0c1222]/40"
-          onClick={() => setOpen(false)}
-        />
-      ) : null}
     </>
   );
 }

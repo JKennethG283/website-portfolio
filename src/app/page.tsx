@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { RevealSection } from "@/components/site/RevealSection";
 import { ProjectStory } from "@/components/site/ProjectStory";
 import { ScrollAtmosphere } from "@/components/site/ScrollAtmosphere";
+import { LandscapeSky } from "@/components/site/LandscapeSky";
 import { ProjectMap } from "@/features/project-map/ProjectMap";
 
 import {
@@ -38,6 +39,7 @@ export default function Home() {
             />
           </div>
           <div className="hero-wash" />
+          <LandscapeSky />
           <div className="wide-container hero-layout">
             <div className="hero-intro">
               <span className="signal-dot" /> AI PRODUCT DEVELOPER{" "}

@@ -1,0 +1,701 @@
+/* Signal: an alpine field companion and a luminous conversation. */
+.mascot-dock {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  z-index: 50;
+  width: 152px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+.mascot-dock[hidden] {
+  display: none;
+}
+.mascot-dock[data-walking="true"][data-direction="left"] .signal-robot {
+  transform: rotate(-5deg);
+}
+.mascot-dock[data-walking="true"][data-direction="right"] .signal-robot {
+  transform: rotate(5deg);
+}
+.mascot-invitation {
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px 12px 3px 12px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 10px;
+  box-shadow: 0 4px 22px #0002;
+  white-space: nowrap;
+}
+.mascot-invitation span {
+  color: var(--accent);
+  padding-left: 5px;
+}
+.mascot-button {
+  display: block;
+  width: 94px;
+  height: 100px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+  border-radius: 25px;
+}
+.mascot-button:active {
+  cursor: grabbing;
+}
+.signal-robot {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 5px 7px #07111b35);
+}
+.mascot-hint {
+  padding: 2px 7px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--text-soft);
+  font-size: 9px;
+  white-space: nowrap;
+}
+.robot-eyes {
+  transform-origin: 50px 45px;
+}
+.robot-body {
+  transform-origin: 50px 85px;
+}
+.robot-arm--right {
+  transform-origin: 80px 60px;
+}
+.mascot-dock[data-dragging="true"] .robot-body {
+  transform: rotate(-8deg) translateY(-4px);
+}
+.mascot-dock[data-dragging="true"] .robot-arm--right {
+  transform: rotate(-110deg);
+}
+.mascot-dock[data-dragging="true"] .robot-shadow {
+  opacity: 0;
+}
+.assistant-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #060e1c75;
+  backdrop-filter: blur(7px);
+}
+.signal-panel {
+  position: fixed;
+  z-index: 70;
+  inset: 20px 20px 20px auto;
+  width: min(470px, calc(100vw - 40px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 28px 100px #02081266;
+  visibility: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition:
+    transform 0.35s ease,
+    visibility 0.35s;
+}
+.signal-panel.is-open {
+  visibility: visible;
+  transform: translateX(0);
+}
+.signal-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  gap: 12px;
+}
+.signal-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.signal-identity-divider {
+  padding-inline: 6px;
+  color: var(--muted);
+}
+.signal-header-actions {
+  display: flex;
+  gap: 4px;
+}
+.signal-icon-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 22px;
+  cursor: pointer;
+}
+.signal-icon-button:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+}
+.signal-presence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 22px 18px 8px;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    color-mix(in srgb, var(--accent) 7%, transparent),
+    transparent 68%
+  );
+}
+.signal-presence h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1.25;
+  margin: 10px 0 6px;
+}
+.signal-state {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 0;
+}
+.signal-presence--compact {
+  flex-direction: row;
+  gap: 12px;
+  text-align: left;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.signal-presence--compact h2 {
+  font-size: 17px;
+  margin: 0 0 3px;
+}
+.signal-presence--compact .assistant-orb {
+  width: 64px;
+  height: 64px;
+}
+.assistant-orb {
+  --orb-a: #b9bafa;
+  --orb-b: #83dfed;
+  width: 160px;
+  height: 160px;
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.orb-sphere {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 30% 22%,
+    #f6faff 0%,
+    var(--orb-b) 15%,
+    var(--orb-a) 40%,
+    #465392 66%,
+    #142039 88%
+  );
+  box-shadow:
+    inset -8px -12px 18px #0a143b80,
+    inset 3px 3px 10px #fff9,
+    0 0 36px color-mix(in srgb, var(--orb-a) 25%, transparent);
+}
+.orb-current {
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(
+    from 30deg,
+    transparent 0%,
+    #ffffff00 28%,
+    var(--orb-b) 43%,
+    #fff9 49%,
+    transparent 59%,
+    var(--orb-a) 85%,
+    transparent
+  );
+  filter: blur(8px);
+  mix-blend-mode: soft-light;
+}
+.orb-shine {
+  position: absolute;
+  top: 10%;
+  left: 18%;
+  width: 42%;
+  height: 24%;
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  background: linear-gradient(#fff9, #fff0);
+  filter: blur(2px);
+}
+.orb-orbit {
+  position: absolute;
+  inset: 10%;
+  border: 1px solid color-mix(in srgb, var(--orb-a) 35%, transparent);
+  border-radius: 50%;
+  transform: rotate(-32deg) scaleY(0.58);
+}
+.orb-orbit--two {
+  inset: 3%;
+  transform: rotate(48deg) scaleY(0.63);
+  border-color: color-mix(in srgb, var(--orb-b) 20%, transparent);
+}
+.orb-orbit--one::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 11%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--orb-b);
+  box-shadow: 0 0 9px var(--orb-b);
+}
+.orb-ripple {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  border: 1px solid var(--orb-b);
+  opacity: 0;
+}
+.assistant-orb[data-state="receiving"],
+.assistant-orb[data-state="listening"] {
+  --orb-a: #68c8cf;
+  --orb-b: #b1ffe5;
+}
+.assistant-orb[data-state="thinking"] {
+  --orb-a: #b29aff;
+  --orb-b: #ded3ff;
+}
+.assistant-orb[data-state="replying"] {
+  --orb-a: #73bfd7;
+  --orb-b: #b3fff3;
+}
+.assistant-orb[data-state="error"] {
+  --orb-a: #d79383;
+  --orb-b: #ffd3a4;
+}
+.assistant-orb--small {
+  width: 42px;
+  height: 42px;
+}
+.signal-conversation {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 12px 25px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.signal-welcome {
+  text-align: center;
+}
+.signal-welcome > p {
+  margin: 8px 0 22px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+.signal-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.signal-suggestions button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 17px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+.signal-suggestions button:hover {
+  border-color: var(--accent);
+  transform: translateX(3px);
+}
+.signal-suggestions button > span:last-child {
+  color: var(--accent);
+}
+.signal-welcome-note {
+  display: block;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 10px;
+}
+.signal-message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.signal-message {
+  max-width: 94%;
+}
+.signal-message-author {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.signal-message > div {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.signal-message--user {
+  align-self: flex-end;
+}
+.signal-message--user .signal-message-author {
+  text-align: right;
+}
+.signal-message--user > div {
+  padding: 11px 16px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: 15px 15px 3px 15px;
+}
+.signal-message--assistant > div {
+  padding-left: 12px;
+  border-left: 2px solid var(--accent);
+}
+.signal-message p {
+  margin: 0 0 12px;
+}
+.signal-message p:last-child {
+  margin-bottom: 0;
+}
+.signal-message :is(ul, ol) {
+  padding-left: 18px;
+  margin: 0 0 12px;
+  white-space: normal;
+}
+.signal-message ul {
+  list-style: disc;
+}
+.signal-message ol {
+  list-style: decimal;
+}
+.signal-message li + li {
+  margin-top: 7px;
+}
+.signal-message strong {
+  font-weight: 650;
+}
+.signal-message code {
+  padding: 2px 4px;
+  background: var(--accent-soft);
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.signal-thinking {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-soft);
+  font-size: 11px;
+  margin-top: 16px;
+}
+.signal-error {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 12px;
+  background: var(--bg-elevated);
+}
+.signal-error p {
+  margin: 0 0 10px;
+}
+.signal-error button,
+.signal-error a {
+  display: block;
+  border: 0;
+  background: transparent;
+  padding: 5px 0;
+  cursor: pointer;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.signal-composer {
+  padding: 16px 20px max(14px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.signal-input-row {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  gap: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: var(--bg-elevated);
+}
+.signal-input-row:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.signal-input-row input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  font-size: 13px;
+  outline: none;
+}
+.signal-input-row input::placeholder {
+  color: var(--muted);
+}
+.signal-mic,
+.signal-send {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 11px;
+  cursor: pointer;
+}
+.signal-mic {
+  background: transparent;
+  color: var(--text-soft);
+}
+.signal-mic[aria-pressed="true"] {
+  color: var(--text);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.signal-send {
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 24px;
+}
+.signal-stop-square {
+  width: 11px;
+  height: 11px;
+  background: currentColor;
+  border-radius: 2px;
+}
+.signal-panel button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.signal-disclaimer {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 8px;
+  color: var(--muted);
+}
+.signal-speech-hint {
+  margin: 10px 4px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+@keyframes orb-breathe {
+  50% {
+    transform: translateY(-3px) scale(1.035);
+  }
+}
+@keyframes orb-flow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orb-think {
+  to {
+    transform: rotate(328deg) scaleY(0.58);
+  }
+}
+@keyframes orb-listen {
+  50% {
+    transform: scale(1.14);
+  }
+}
+@keyframes orb-reply {
+  20%,
+  60% {
+    transform: scale(1.09, 0.96);
+  }
+  40%,
+  80% {
+    transform: scale(0.97, 1.07);
+  }
+}
+@keyframes orb-ripple {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+@keyframes robot-blink {
+  0%,
+  43%,
+  47%,
+  100% {
+    transform: scaleY(1);
+  }
+  45% {
+    transform: scaleY(0.12);
+  }
+}
+@keyframes robot-bob {
+  50% {
+    transform: translateY(-2px);
+  }
+}
+@keyframes robot-step {
+  50% {
+    transform: translateY(-5px) rotate(8deg);
+  }
+}
+@keyframes robot-wave {
+  30%,
+  70% {
+    transform: rotate(-125deg);
+  }
+  50% {
+    transform: rotate(-100deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .is-open .orb-sphere {
+    animation: orb-breathe 4s ease-in-out infinite;
+  }
+  .is-open .orb-current {
+    animation: orb-flow 10s linear infinite;
+  }
+  .is-open [data-state="thinking"] .orb-orbit--one {
+    animation: orb-think 1.8s linear infinite;
+  }
+  .is-open [data-state="thinking"] .orb-current {
+    animation-duration: 2s;
+  }
+  .is-open [data-state="receiving"] .orb-sphere {
+    animation: orb-listen 1.8s ease-in-out infinite;
+  }
+  .is-open [data-state="listening"] .orb-sphere {
+    animation: orb-listen 0.8s ease-in-out infinite;
+  }
+  .is-open [data-state="listening"] .orb-ripple,
+  .is-open [data-state="replying"] .orb-ripple {
+    animation: orb-ripple 1.2s ease-out infinite;
+  }
+  .is-open [data-state="replying"] .orb-sphere {
+    animation: orb-reply 1.4s ease-in-out infinite;
+  }
+  .mascot-dock:not([hidden]) .robot-eyes {
+    animation: robot-blink 5s infinite;
+  }
+  .mascot-dock:not([hidden]) .robot-body {
+    animation: robot-bob 3s ease-in-out infinite;
+  }
+  .mascot-dock[data-walking="true"] .robot-foot {
+    animation: robot-step 0.35s infinite;
+    transform-origin: center;
+  }
+  .mascot-dock[data-walking="true"] .robot-foot--right {
+    animation-delay: -0.175s;
+  }
+  .mascot-dock:hover .robot-arm--right {
+    animation: robot-wave 1.3s ease-in-out;
+  }
+  .mascot-dock[data-dragging="true"] .robot-body {
+    animation: none;
+  }
+}
+@media (max-width: 600px) {
+  .mascot-dock {
+    right: 8px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: 137px;
+  }
+  .mascot-button {
+    width: 78px;
+    height: 82px;
+  }
+  .mascot-hint {
+    font-size: 8px;
+  }
+  .signal-panel {
+    inset: 8px;
+    top: calc(var(--chat-viewport-top, 0px) + 8px);
+    bottom: auto;
+    height: calc(var(--chat-viewport-height, 100dvh) - 16px);
+    width: auto;
+    border-radius: 20px;
+  }
+  .signal-presence {
+    padding-top: 10px;
+  }
+  .signal-presence .assistant-orb {
+    width: 135px;
+    height: 135px;
+  }
+  .signal-presence--compact .assistant-orb {
+    width: 54px;
+    height: 54px;
+  }
+  .signal-presence h2 {
+    font-size: 25px;
+  }
+  .signal-presence--compact h2 {
+    font-size: 16px;
+  }
+  .signal-input-row input {
+    font-size: 16px;
+  }
+}
+@media (max-height: 700px) {
+  .signal-presence:not(.signal-presence--compact) {
+    flex-direction: row;
+    gap: 12px;
+    text-align: left;
+    padding: 12px 24px;
+  }
+  .signal-presence .assistant-orb {
+    width: 74px;
+    height: 74px;
+  }
+  .signal-presence h2 {
+    font-size: 21px;
+  }
+  .signal-welcome-note {
+    display: none;
+  }
+}

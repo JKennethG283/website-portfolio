@@ -27,6 +27,7 @@ export function ProjectStory({ projects }: { projects: FeaturedProject[] }) {
       if (!desktop.matches) {
         layers.forEach((layer) => {
           layer.style.opacity = "";
+          layer.style.transform = "";
         });
         return;
       }
@@ -49,6 +50,7 @@ export function ProjectStory({ projects }: { projects: FeaturedProject[] }) {
         layer.style.opacity = String(
           i === 0 ? 1 : Math.max(0, Math.min(1, (position - i + 0.65) / 0.3)),
         );
+        layer.style.transform = `scale(${1 + Math.max(0, Math.min(1, position - i + 1)) * 0.035})`;
       });
     };
     const schedule = () => {

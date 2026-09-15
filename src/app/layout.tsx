@@ -31,7 +31,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col portfolio-body">
-        {children}
+        <div id="site-content">{children}</div>
         <JonathanChatbot />
       </body>
     </html>
