@@ -84,6 +84,9 @@
 .robot-body {
   transform-origin: 50px 85px;
 }
+.robot-arm--left {
+  transform-origin: 20px 60px;
+}
 .robot-arm--right {
   transform-origin: 80px 60px;
 }
@@ -609,6 +612,42 @@
     transform: rotate(-100deg);
   }
 }
+@keyframes robot-struggle {
+  0%,
+  100% {
+    transform: translate(-1px, -4px) rotate(-8deg);
+  }
+  50% {
+    transform: translate(1px, -3px) rotate(5deg);
+  }
+}
+@keyframes robot-flail-left {
+  0%,
+  100% {
+    transform: rotate(65deg);
+  }
+  50% {
+    transform: rotate(105deg);
+  }
+}
+@keyframes robot-flail-right {
+  0%,
+  100% {
+    transform: rotate(-110deg);
+  }
+  50% {
+    transform: rotate(-65deg);
+  }
+}
+@keyframes robot-kick {
+  0%,
+  100% {
+    transform: translateY(-2px) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(3px) rotate(12deg);
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .is-open .orb-sphere {
     animation: orb-breathe 4s ease-in-out infinite;
@@ -652,7 +691,22 @@
     animation: robot-wave 1.3s ease-in-out;
   }
   .mascot-dock[data-dragging="true"] .robot-body {
-    animation: none;
+    transform-origin: 50px 30px;
+    animation: robot-struggle 0.42s ease-in-out infinite;
+  }
+  .mascot-dock[data-dragging="true"] .robot-arm--left {
+    animation: robot-flail-left 0.3s ease-in-out infinite;
+  }
+  .mascot-dock[data-dragging="true"] .robot-arm--right {
+    animation: robot-flail-right 0.34s ease-in-out infinite;
+  }
+  .mascot-dock[data-dragging="true"] .robot-foot {
+    transform-box: fill-box;
+    transform-origin: center top;
+    animation: robot-kick 0.3s ease-in-out infinite;
+  }
+  .mascot-dock[data-dragging="true"] .robot-foot--right {
+    animation-delay: -0.15s;
   }
 }
 @media (max-width: 600px) {
