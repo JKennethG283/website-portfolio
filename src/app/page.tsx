@@ -54,8 +54,8 @@ export default function Home() {
               <p>
                 I’m Jonathan Kenneth Gunawan.
                 <br />I build AI products across workflows, markets, and mobile.
-                <br className="desktop-break" /> Currently an intern at
-                Gradstack and an AI student at UTS.
+                <br className="desktop-break" /> AI and Software Engineer at
+                Gradstack and a UTS graduate.
               </p>
               <a className="pill-link pill-link--light" href="#projects">
                 Explore my work <span aria-hidden="true">↗</span>
@@ -93,7 +93,7 @@ export default function Home() {
               Gradstack<span>®</span>
             </h2>
             <p className="experience-dates">
-              Intern · <time dateTime="2026-07">July 2026</time>–present
+              AI and Software Engineer
             </p>
             <span className="experience-status">
               <span className="signal-dot" /> Sydney · AI & software development
@@ -247,9 +247,9 @@ export default function Home() {
                 <span>Then, code.</span>
               </h2>
               <p>
-                I’m Jonathan, a Bachelor of Artificial Intelligence student at
-                the University of Technology Sydney and an intern at Gradstack
-                since July 2026. I’m interested in what happens when rigorous
+                I’m Jonathan, a Bachelor of Artificial Intelligence graduate of
+                the University of Technology Sydney and an AI and Software
+                Engineer at Gradstack. I’m interested in what happens when rigorous
                 machine learning meets something people can actually use.
               </p>
               <p>
@@ -268,7 +268,7 @@ export default function Home() {
               </a>
               <div className="about-footnote">
                 <span>BASED IN SYDNEY</span>
-                <span>STUDYING AT UTS</span>
+                <span>UTS GRADUATE</span>
               </div>
             </div>
           </div>

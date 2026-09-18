@@ -1,6 +1,6 @@
 {
   "embeddingModel": "sentence-transformers/all-MiniLM-L6-v2",
-  "generatedAt": "2026-09-15T00:56:33.275Z",
+  "generatedAt": "2026-09-18T21:45:31.909Z",
   "lexicalOnly": true,
   "chunks": [
     {
@@ -10,12 +10,12 @@
     },
     {
       "id": "jk-1",
-      "text": "## Overview\n\nJonathan Kenneth Gunawan is an AI product developer, a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS), and an intern at Gradstack. He started the Gradstack internship at the beginning of July 2026 and it is ongoing. His work spans AI workflow tools, financial research, voice-first mobile experiences, learning platforms, and machine learning research.",
+      "text": "## Overview\n\nJonathan Kenneth Gunawan is an AI and Software Engineer at Gradstack and a Bachelor of Artificial Intelligence graduate of the University of Technology Sydney (UTS). He joined Gradstack as an intern in July 2026 and was subsequently hired as an AI and Software Engineer. The start date of his current role has not been supplied. His work spans AI workflow tools, financial research, voice-first mobile experiences, learning platforms, and machine learning research.",
       "embedding": null
     },
     {
       "id": "jk-2",
-      "text": "## Elevator pitch\n\nJonathan Kenneth Gunawan builds AI products across interfaces, APIs, models, and data pipelines. He is based in Sydney, studies Artificial Intelligence at UTS, and has been an intern at Gradstack since July 2026. His portfolio combines personal product development, explicit contributions to team projects, and reproducible ML research.",
+      "text": "## Elevator pitch\n\nJonathan Kenneth Gunawan builds AI products across interfaces, APIs, models, and data pipelines. He is based in Sydney, has graduated from UTS with a Bachelor of Artificial Intelligence, and works as an AI and Software Engineer at Gradstack. His portfolio combines personal product development, explicit contributions to team projects, and reproducible ML research.",
       "embedding": null
     },
     {
@@ -85,7 +85,7 @@
     },
     {
       "id": "jk-16",
-      "text": "## Experience — Gradstack internship\n\nJonathan is an intern at Gradstack, from the beginning of July 2026 to the present. Public display: Intern · July 2026–present. His contributions to the team’s AI fluency assessment and learning platform include candidate assessment and results interfaces, downloadable result summaries, learning catalogue search and browsing, and data models for learning progress and achievements. These are team contributions. Internal source code, assessment content, and detailed scoring rules are not part of the public portfolio. No more specific contractual title has been supplied.",
+      "text": "## Experience — AI and Software Engineer at Gradstack\n\nJonathan is an AI and Software Engineer at Gradstack. He joined the company as an intern in July 2026 and was subsequently hired. Public display: AI and Software Engineer. The start date of the current role has not been supplied; do not present July 2026 as its start date. His contributions to the team’s AI fluency assessment and learning platform include candidate assessment and results interfaces, downloadable result summaries, learning catalogue search and browsing, and data models for learning progress and achievements. These are team contributions. Internal source code, assessment content, and detailed scoring rules are not part of the public portfolio.",
       "embedding": null
     },
     {
@@ -115,12 +115,12 @@
     },
     {
       "id": "jk-22",
-      "text": "When blockers appear, he researches again, experiments, and iterates until the path is sound.\n\n### What are your non-negotiables for model and system quality?\n\nReliability (behaviour you can trust under drift and edge cases), alignment with business or research goals, rigorous evaluation (not just leaderboard metrics), and safety and governance (data use, bias, and deployment risk).\n\n### What should recruiters and clients remember about you?\n\nHe wants to be known as a production-first engineer. A project is not “done” when accuracy is high on a laptop; it is done when the work is containerized (e.g. Docker), trackable (e.g. MLflow or equivalent), and runnable reliably in a pipeline. He bridges exploratory data science and stable software engineering so code stays maintainable, reproducible, and scalable.\n\n### What are you focusing on learning now?\n\nHe is deepening NLP, LLMs, generative AI, and reinforcement learning as one arc: NLP for the text and signal foundation, LLMs and GenAI for production systems, advanced RAG, and agents that perform real tasks, plus reinforcement learning for decision-making, reasoning-oriented models, and alignment patterns such as RLHF—so systems are not only capable but safer and more dependable in production.\n\n### What team environment helps you do your best work?\n\nHe does best in an egoless, production-minded culture that pairs clear process with real autonomy. Technically, he values documentation, containerization, and code review as defaults. Interpersonally, he values radical candor and psychological safety: room to dissect model failures, learn from data, and pivot quickly without blame.\n\n### Background, location, and job search\n\nHe is 22, Indonesian, and is completing his studies in Sydney, Australia (Bachelor of Artificial Intelligence at UTS), with graduation imminent. He is open to any suitable opportunity—internships, graduate programs, full-time roles, or other arrangements—and wants to start work as soon as possible.",
+      "text": "When blockers appear, he researches again, experiments, and iterates until the path is sound.\n\n### What are your non-negotiables for model and system quality?\n\nReliability (behaviour you can trust under drift and edge cases), alignment with business or research goals, rigorous evaluation (not just leaderboard metrics), and safety and governance (data use, bias, and deployment risk).\n\n### What should recruiters and clients remember about you?\n\nHe wants to be known as a production-first engineer. A project is not “done” when accuracy is high on a laptop; it is done when the work is containerized (e.g. Docker), trackable (e.g. MLflow or equivalent), and runnable reliably in a pipeline. He bridges exploratory data science and stable software engineering so code stays maintainable, reproducible, and scalable.\n\n### What are you focusing on learning now?\n\nHe is deepening NLP, LLMs, generative AI, and reinforcement learning as one arc: NLP for the text and signal foundation, LLMs and GenAI for production systems, advanced RAG, and agents that perform real tasks, plus reinforcement learning for decision-making, reasoning-oriented models, and alignment patterns such as RLHF—so systems are not only capable but safer and more dependable in production.\n\n### What team environment helps you do your best work?\n\nHe does best in an egoless, production-minded culture that pairs clear process with real autonomy. Technically, he values documentation, containerization, and code review as defaults. Interpersonally, he values radical candor and psychological safety: room to dissect model failures, learn from data, and pivot quickly without blame.\n\n### Background, location, and current role\n\nHe is Indonesian, based in Sydney, Australia, and has graduated from UTS with a Bachelor of Artificial Intelligence. He is employed at Gradstack as an AI and Software Engineer. His current availability for other roles has not been confirmed.",
       "embedding": null
     },
     {
       "id": "jk-23",
-      "text": "nent. He is open to any suitable opportunity—internships, graduate programs, full-time roles, or other arrangements—and wants to start work as soon as possible. If an employer needs him to stay in Australia, he can pursue a post-study work visa (the common graduate pathway, e.g. Subclass 485) as required. He is flexible about location and is willing to relocate within Australia or internationally.\n\n### Languages\n\nHe is fluent in English and Indonesian, and has moderate proficiency in Chinese.\n\n### Identity\n\nHe is male and straight.",
+      "text": "achelor of Artificial Intelligence. He is employed at Gradstack as an AI and Software Engineer. His current availability for other roles has not been confirmed. If an employer needs him to stay in Australia, he can pursue a post-study work visa (the common graduate pathway, e.g. Subclass 485) as required. He is flexible about location and is willing to relocate within Australia or internationally.\n\n### Languages\n\nHe is fluent in English and Indonesian, and has moderate proficiency in Chinese.\n\n### Identity\n\nHe is male and straight.",
       "embedding": null
     },
     {
@@ -140,7 +140,7 @@
     },
     {
       "id": "jk-27",
-      "text": "## Work authorization (factual, non-legal)\n\nHe is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and post-study options depend on visa subclass and individual circumstances; official sources should be consulted. He has indicated openness to applying for post-study work pathways (e.g. Subclass **485**-style graduate streams where eligible) if needed for roles in Australia.",
+      "text": "## Work authorization (factual, non-legal)\n\nHe is **Indonesian**, based in **Sydney, Australia**, and a Bachelor of Artificial Intelligence graduate of UTS. Work rights and post-study options depend on visa subclass and individual circumstances; official sources should be consulted. He has indicated openness to applying for post-study work pathways (e.g. Subclass **485**-style graduate streams where eligible) if needed for roles in Australia.",
       "embedding": null
     },
     {
@@ -150,17 +150,17 @@
     },
     {
       "id": "jk-29",
-      "text": "## Collaboration and leadership context\n\nJonathan has been an intern at Gradstack since July 2026, contributing as part of the engineering team. Haven AI and Serendip-TG are also team projects: describe his specific contributions rather than claiming he built the entire platform. Personal projects and coursework demonstrate additional independent work. Do not infer a leadership title, sole ownership, or an employment relationship with other organisations.",
+      "text": "## Collaboration and leadership context\n\nJonathan is an AI and Software Engineer at Gradstack, contributing as part of the engineering team. He initially joined as an intern in July 2026 before being hired. Haven AI and Serendip-TG are also team projects: describe his specific contributions rather than claiming he built the entire platform. Personal projects and coursework demonstrate additional independent work. Do not infer a leadership title, sole ownership, or an employment relationship with other organisations.",
       "embedding": null
     },
     {
       "id": "jk-30",
-      "text": "## Interests outside technical work / Hobbies\n\n**Hobbies and personal interests:** He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work and study he enjoys **hiking**, **badminton**, **playing stocks**, **watching movies**, and **playing video games**. These activities help him recharge and stay curious; his market interest in particular feeds directly into his professional work on financial AI.",
+      "text": "## Interests outside technical work / Hobbies\n\n**Hobbies and personal interests:** He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work he enjoys **hiking**, **badminton**, **playing stocks**, **watching movies**, and **playing video games**. These activities help him recharge and stay curious; his market interest in particular feeds directly into his professional work on financial AI.",
       "embedding": null
     },
     {
       "id": "jk-31",
-      "text": "## This website — FAQ for visitors\n\nThe site presents Jonathan Kenneth Gunawan’s Gradstack internship, three featured products (Flowstudio, Market Cerdas, Haven AI), supporting contributions and research, an expandable earlier-ML-work list, About, Skills, Playground, and Contact.\n\nProject stories: /work/flowstudio, /work/market-cerdas, /work/haven-ai, /work/serendip-tg.\n\nPlayground: hand tracking at /object-detection and an adaptive Markov-style Rock–Paper–Scissors opponent at /rps-markov.\n\nThe assistant answers from this public portfolio profile. It does not have access to private source repositories or private project data.",
+      "text": "## This website — FAQ for visitors\n\nThe site presents Jonathan Kenneth Gunawan’s AI and Software Engineer role at Gradstack, three featured products (Flowstudio, Market Cerdas, Haven AI), supporting contributions and research, an expandable earlier-ML-work list, About, Skills, Playground, and Contact.\n\nProject stories: /work/flowstudio, /work/market-cerdas, /work/haven-ai, /work/serendip-tg.\n\nPlayground: hand tracking at /object-detection and an adaptive Markov-style Rock–Paper–Scissors opponent at /rps-markov.\n\nThe assistant answers from this public portfolio profile. It does not have access to private source repositories or private project data.",
       "embedding": null
     },
     {

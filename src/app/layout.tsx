@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Jonathan Kenneth — Portfolio",
   description:
-    "AI product developer and Gradstack intern. Explore agent workflows, financial AI, voice-first mobile products, and machine learning research.",
+    "AI and Software Engineer at Gradstack and UTS graduate. Explore agent workflows, financial AI, voice-first mobile products, and machine learning research.",
 };
 
 export default function RootLayout({

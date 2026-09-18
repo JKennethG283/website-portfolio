@@ -2,11 +2,11 @@
 
 ## Overview
 
-Jonathan Kenneth Gunawan is an AI product developer, a Bachelor of Artificial Intelligence student at the University of Technology Sydney (UTS), and an intern at Gradstack. He started the Gradstack internship at the beginning of July 2026 and it is ongoing. His work spans AI workflow tools, financial research, voice-first mobile experiences, learning platforms, and machine learning research.
+Jonathan Kenneth Gunawan is an AI and Software Engineer at Gradstack and a Bachelor of Artificial Intelligence graduate of the University of Technology Sydney (UTS). He joined Gradstack as an intern in July 2026 and was subsequently hired as an AI and Software Engineer. The start date of his current role has not been supplied. His work spans AI workflow tools, financial research, voice-first mobile experiences, learning platforms, and machine learning research.
 
 ## Elevator pitch
 
-Jonathan Kenneth Gunawan builds AI products across interfaces, APIs, models, and data pipelines. He is based in Sydney, studies Artificial Intelligence at UTS, and has been an intern at Gradstack since July 2026. His portfolio combines personal product development, explicit contributions to team projects, and reproducible ML research.
+Jonathan Kenneth Gunawan builds AI products across interfaces, APIs, models, and data pipelines. He is based in Sydney, has graduated from UTS with a Bachelor of Artificial Intelligence, and works as an AI and Software Engineer at Gradstack. His portfolio combines personal product development, explicit contributions to team projects, and reproducible ML research.
 
 ## How he builds systems
 
@@ -97,9 +97,9 @@ GitHub: https://github.com/JKennethG283
 The portfolio includes both public research repositories and private-source products. Public code links are shown only for the established research projects. Market Cerdas offers a live product and a public documentation repository. Flowstudio, Haven AI, Serendip-TG, and Server-driven UI are presented through public product or contribution descriptions, not private source links.
 
 
-## Experience — Gradstack internship
+## Experience — AI and Software Engineer at Gradstack
 
-Jonathan is an intern at Gradstack, from the beginning of July 2026 to the present. Public display: Intern · July 2026–present. His contributions to the team’s AI fluency assessment and learning platform include candidate assessment and results interfaces, downloadable result summaries, learning catalogue search and browsing, and data models for learning progress and achievements. These are team contributions. Internal source code, assessment content, and detailed scoring rules are not part of the public portfolio. No more specific contractual title has been supplied.
+Jonathan is an AI and Software Engineer at Gradstack. He joined the company as an intern in July 2026 and was subsequently hired. Public display: AI and Software Engineer. The start date of the current role has not been supplied; do not present July 2026 as its start date. His contributions to the team’s AI fluency assessment and learning platform include candidate assessment and results interfaces, downloadable result summaries, learning catalogue search and browsing, and data models for learning progress and achievements. These are team contributions. Internal source code, assessment content, and detailed scoring rules are not part of the public portfolio.
 
 ## Featured project — Flowstudio
 
@@ -153,9 +153,9 @@ He is deepening NLP, LLMs, generative AI, and reinforcement learning as one arc:
 
 He does best in an egoless, production-minded culture that pairs clear process with real autonomy. Technically, he values documentation, containerization, and code review as defaults. Interpersonally, he values radical candor and psychological safety: room to dissect model failures, learn from data, and pivot quickly without blame.
 
-### Background, location, and job search
+### Background, location, and current role
 
-He is 22, Indonesian, and is completing his studies in Sydney, Australia (Bachelor of Artificial Intelligence at UTS), with graduation imminent. He is open to any suitable opportunity—internships, graduate programs, full-time roles, or other arrangements—and wants to start work as soon as possible. If an employer needs him to stay in Australia, he can pursue a post-study work visa (the common graduate pathway, e.g. Subclass 485) as required. He is flexible about location and is willing to relocate within Australia or internationally.
+He is Indonesian, based in Sydney, Australia, and has graduated from UTS with a Bachelor of Artificial Intelligence. He is employed at Gradstack as an AI and Software Engineer. His current availability for other roles has not been confirmed. If an employer needs him to stay in Australia, he can pursue a post-study work visa (the common graduate pathway, e.g. Subclass 485) as required. He is flexible about location and is willing to relocate within Australia or internationally.
 
 ### Languages
 
@@ -184,7 +184,7 @@ When answering as the portfolio assistant:
 
 ## Work authorization (factual, non-legal)
 
-He is **Indonesian**, studying in **Sydney, Australia** at UTS. Work rights and post-study options depend on visa subclass and individual circumstances; official sources should be consulted. He has indicated openness to applying for post-study work pathways (e.g. Subclass **485**-style graduate streams where eligible) if needed for roles in Australia.
+He is **Indonesian**, based in **Sydney, Australia**, and a Bachelor of Artificial Intelligence graduate of UTS. Work rights and post-study options depend on visa subclass and individual circumstances; official sources should be consulted. He has indicated openness to applying for post-study work pathways (e.g. Subclass **485**-style graduate streams where eligible) if needed for roles in Australia.
 
 ## Repository status (portfolio-ready vs work in progress)
 
@@ -192,15 +192,15 @@ Featured products: Flowstudio (working local platform; private source), Market C
 
 ## Collaboration and leadership context
 
-Jonathan has been an intern at Gradstack since July 2026, contributing as part of the engineering team. Haven AI and Serendip-TG are also team projects: describe his specific contributions rather than claiming he built the entire platform. Personal projects and coursework demonstrate additional independent work. Do not infer a leadership title, sole ownership, or an employment relationship with other organisations.
+Jonathan is an AI and Software Engineer at Gradstack, contributing as part of the engineering team. He initially joined as an intern in July 2026 before being hired. Haven AI and Serendip-TG are also team projects: describe his specific contributions rather than claiming he built the entire platform. Personal projects and coursework demonstrate additional independent work. Do not infer a leadership title, sole ownership, or an employment relationship with other organisations.
 
 ## Interests outside technical work / Hobbies
 
-**Hobbies and personal interests:** He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work and study he enjoys **hiking**, **badminton**, **playing stocks**, **watching movies**, and **playing video games**. These activities help him recharge and stay curious; his market interest in particular feeds directly into his professional work on financial AI.
+**Hobbies and personal interests:** He follows **financial markets**, **technology news**, and connections between Indonesia and global AI adoption—keeping informal interests aligned with his professional direction. Outside work he enjoys **hiking**, **badminton**, **playing stocks**, **watching movies**, and **playing video games**. These activities help him recharge and stay curious; his market interest in particular feeds directly into his professional work on financial AI.
 
 ## This website — FAQ for visitors
 
-The site presents Jonathan Kenneth Gunawan’s Gradstack internship, three featured products (Flowstudio, Market Cerdas, Haven AI), supporting contributions and research, an expandable earlier-ML-work list, About, Skills, Playground, and Contact.
+The site presents Jonathan Kenneth Gunawan’s AI and Software Engineer role at Gradstack, three featured products (Flowstudio, Market Cerdas, Haven AI), supporting contributions and research, an expandable earlier-ML-work list, About, Skills, Playground, and Contact.
 
 Project stories: /work/flowstudio, /work/market-cerdas, /work/haven-ai, /work/serendip-tg.
 

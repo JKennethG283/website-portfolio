@@ -398,7 +398,7 @@ export function JonathanChatbot() {
                   ],
                   [
                     "Meet Jonathan",
-                    "Tell me about Jonathan's journey and his internship at Gradstack.",
+                    "Tell me about Jonathan's journey and his role as an AI and Software Engineer at Gradstack.",
                   ],
                 ].map(([label, prompt]) => (
                   <button type="button" key={label} onClick={() => ask(prompt)}>

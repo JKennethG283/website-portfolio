@@ -1,12 +1,12 @@
 # Portfolio website
 
-Personal portfolio site for **Jonathan Kenneth Gunawan** — Bachelor of Artificial Intelligence (UTS). Built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and the **App Router** (`src/app/`).
+Personal portfolio site for **Jonathan Kenneth Gunawan** — AI and Software Engineer at Gradstack and Bachelor of Artificial Intelligence graduate (UTS). Built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and the **App Router** (`src/app/`).
 
 Styling combines Tailwind with `src/styles/portfolio.css` (shared foundations and demos) and `src/styles/landscape.css` (the Signal & Landscape visual theme).
 
 ## Features
 
-- **One-page portfolio:** photographic hero, Gradstack internship (July 2026–present), scroll-driven featured products, supporting contributions, expandable earlier ML work, about, toolkit, playground, and contact.
+- **One-page portfolio:** photographic hero, AI and Software Engineer role at Gradstack, scroll-driven featured products, supporting contributions, expandable earlier ML work, about, toolkit, playground, and contact.
 - **Project stories:** `/work/flowstudio`, `/work/market-cerdas`, `/work/haven-ai`, and `/work/serendip-tg` provide public product and contribution overviews. Team roles and development status are explicit; private source links are omitted.
 - **Project constellation:** `/#project-map` connects the 14 public projects, demos, and contributions by shared themes. A rotating 3D projection supports dragging, selection, theme filters, related projects, and a linked directory. Rotation pauses on node hover/focus, when offscreen, and in background tabs; reduced-motion preferences disable automatic rotation. Rendering uses a local canvas and accessible HTML controls without a 3D library or external service. Inspired by the interconnected knowledge approach in [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f); connections describe shared themes, not runtime dependencies.
 - **Playground:** hand **object detection** demo (`/object-detection`) and **Rock–Paper–Scissors** vs a Markov-style opponent (`/rps-markov`).
